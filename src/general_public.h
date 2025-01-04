@@ -1,0 +1,7 @@
+#ifndef GENERAL_PUBLIC_H
+#define GENERAL_PUBLIC_H
+
+#define SCREEN_WIDTH 1024
+#define SCREEN_HEIGHT 576
+
+#endif // GENERAL_PUBLIC_H
