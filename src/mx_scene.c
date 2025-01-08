@@ -1,5 +1,5 @@
-#include "../include/scene.h"
-#include "../include/general_internal.h"
+#include "mx_scene.h"
+#include "mx_general_internal.h"
 
 void *create_scene_manager(void) {
   SceneManager *manager = (SceneManager*)SDL_malloc(sizeof(SceneManager));

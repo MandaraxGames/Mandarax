@@ -1,7 +1,7 @@
 #ifndef CONTROLS_H
 #define CONTROLS_H
 
-#include "common.h"
+#include "mx_common.h"
 
 void *create_controls(void);
 void destroy_controls(void *ctrl_pointer);

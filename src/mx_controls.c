@@ -1,9 +1,9 @@
-#include "../include/controls.h"
-#include "../include/stack.h"
-#include "../include/motor.h"
-#include "../include/menu_scene.h"
-#include "../include/game_scene.h"
-#include "../include/general_internal.h"
+#include "mx_controls.h"
+#include "mx_stack.h"
+#include "mx_motor.h"
+#include "mx_menu_scene.h"
+#include "mx_game_scene.h"
+#include "mx_general_internal.h"
 
 int is_specific_key(SDL_Keycode key);
 

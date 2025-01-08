@@ -1,7 +1,7 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
-#include "common.h"
+#include "mx_common.h"
 
 typedef void (*RenderFunction)(SDL_Renderer*);
 

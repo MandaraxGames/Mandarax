@@ -1,7 +1,7 @@
 #ifndef SCENE_H
 #define SCENE_H
 
-#include "common.h"
+#include "mx_common.h"
 
 void *create_scene_manager(void);
 void destroy_scene_manager(void *scene_manager_pointer);

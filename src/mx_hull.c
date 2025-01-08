@@ -1,12 +1,12 @@
-#include "../include/hull.h"
-#include "../include/controls.h"
-#include "../include/renderer.h"
-#include "../include/motor.h"
-#include "../include/enemy.h"
-#include "../include/user_interface.h"
-#include "../include/scene.h"
-#include "../include/general_internal.h"
-#include "../include/general_public.h"
+#include "mx_hull.h"
+#include "mx_controls.h"
+#include "mx_renderer.h"
+#include "mx_motor.h"
+#include "mx_enemy.h"
+#include "mx_user_interface.h"
+#include "mx_scene.h"
+#include "mx_general_internal.h"
+#include "mx_general_public.h"
 
 void *assemble_app(const char *title, Uint64 width, Uint64 height) {
   TTF_Init();

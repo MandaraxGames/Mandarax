@@ -1,7 +1,7 @@
-#include "../include/motor.h"
-#include "../include/controls.h"
-#include "../include/renderer.h"
-#include "../include/general_internal.h"
+#include "mx_motor.h"
+#include "mx_controls.h"
+#include "mx_renderer.h"
+#include "mx_general_internal.h"
 
 void *create_motor() {
   Motor *motor = (Motor*)SDL_malloc(sizeof(Motor));

@@ -1,5 +1,5 @@
-#include "../include/renderer.h"
-#include "../include/general_internal.h"
+#include "mx_renderer.h"
+#include "mx_general_internal.h"
 
 void *create_renderer(SDL_Renderer *sdl_renderer) {
   Renderer *renderer = (Renderer *)SDL_malloc(sizeof(Renderer));
