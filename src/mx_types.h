@@ -25,7 +25,7 @@ typedef struct {
     Uint32 height;
     Uint32 flags;          // Configuration flags
     Uint8 renderer_count;  // Number of additional renderers
-    Uint8 manifest_count;  // Number of entity systems
+    //Uint8 manifest_count;  // Number of entity systems
 } MxConfig;
 
 #endif // MX_TYPES_H

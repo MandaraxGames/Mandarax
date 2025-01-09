@@ -9,21 +9,21 @@ typedef struct {
     Uint64 element_size;
     Uint64 max_elements;
     Uint64 top;
-} Stack;
+} MX_Stack;
 
 typedef struct {
     Uint64 width;
     Uint64 height;
     SDL_Texture* texture;
     Stack* text_stack;
-} CachedText;
+} MX_CachedText;
 
 typedef struct {
     SDL_Renderer* renderer;
     Sint64 mod_count;
     Sint64 max_modifications;
     void (**render_modifications)(SDL_Renderer*);
-} Renderer;
+} MX_Renderer;
 
 typedef struct {
     Uint64 entity_count;
@@ -31,11 +31,11 @@ typedef struct {
     void** entities;      // Dynamic array of entities
     void (*update)(void* manifest);
     void (*render)(void* manifest, SDL_Renderer* renderer);
-} Manifest;
+} MX_Manifest;
 
 typedef struct {
     Uint64 running;
-} Motor;
+} MX_Motor;
 
 typedef struct {
     MxSceneState state;
@@ -43,21 +43,21 @@ typedef struct {
     void (*update)(void* hull_pointer);
     void (*render)(void* hull_pointer);
     void (*cleanup)(void* hull_pointer);
-} Scene;
+} MX_Scene;
 
 typedef struct {
     Uint64 transitioning;
     Sint64 transition_progress;
     void* current_scene;
     void* next_scene;
-} SceneManager;
+} MX_SceneManager;
 
 // Main hull structure reflecting mx_types.h configuration
-typedef struct {
+struct MX_Hull {
     // Required components
     SDL_Window* window;
-    Motor* motor;
-    Renderer* renderer;    // Required primary renderer
+    MX_Motor* motor;
+    MX_Renderer* renderer;    // Required primary renderer
     
     // Optional entity systems (MX_HULL_MANIFEST)
     // Uint8 manifest_count;
@@ -67,6 +67,6 @@ typedef struct {
     // Controls* controls;    // MX_HULL_CONTROLS
     // SceneManager* navigation;  // MX_HULL_NAVIGATION
     // void* ui;             // MX_HULL_UI
-} Hull;
+};
 
 #endif // GENERAL_INTERNAL_H

@@ -3,8 +3,10 @@
 
 #include "mx_common.h"
 
-void *create_motor(void);
-void destroy_motor(void *motor_pointer);
+typedef struct MX_Motor* MX_Motor_Handle;
+
+MX_Motor_Handle create_motor(void);
+void destroy_motor(MX_Motor_Handle motor_pointer);
 void run_game_loop(void *hull_pointer);
 void toggle_pause(void *hull_pointer);
 void end_game_loop(void *hull_pointer);

@@ -3,10 +3,10 @@
 
 #include "mx_common.h"
 
-typedef struct Hull Hull;
+typedef struct MX_Hull* MX_Hull_Handle;
 
-void *assemble_app(const char *title, Uint64 width, Uint64 height);
-void disassemble_app(void *hull_pointer);
-void render_grid(void *hull_pointer);
+MX_Hull_Handle assemble_app(const char* title, Uint64 width, Uint64 height);
+void disassemble_app(MX_Hull_Handle hull_handle);
+void render_grid(MX_Hull_Handle hull_handle);
 
 #endif // HULL_H
