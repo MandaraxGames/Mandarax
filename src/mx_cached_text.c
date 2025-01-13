@@ -61,18 +61,18 @@ void update_cached_text_texture(void* cached_text_pointer, SDL_Renderer* rendere
     current_text[text_stack->top] = '\0';
     
     SDL_Color color = {255, 255, 255};
-    SDL_Surface* surface = TTF_RenderText_Solid(font, current_text, color);
+    //SDL_Surface* surface = TTF_RenderText_Solid(font, current_text, color);
     SDL_free(current_text);
     
-    if (!surface) {
-        SDL_Log("Unable to create text surface: %s", TTF_GetError());
-        return;
-    }
+    //if (!surface) {
+    //    SDL_Log("Unable to create text surface: %s", TTF_GetError());
+    //    return;
+    //}
     
-    text->width = surface->w;
-    text->height = surface->h;
-    text->texture = SDL_CreateTextureFromSurface(renderer, surface);
-    SDL_FreeSurface(surface);
+    //text->width = surface->w;
+    //text->height = surface->h;
+    //text->texture = SDL_CreateTextureFromSurface(renderer, surface);
+    //SDL_FreeSurface(surface);
     
     if (!text->texture) {
         SDL_Log("Unable to create texture: %s", SDL_GetError());
