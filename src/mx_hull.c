@@ -4,9 +4,14 @@
 #include "mx_motor.h"
 #include "mx_scene.h"
 #include "mx_general_internal.h"
-#include "mx_general_public.h"
 
-Hull_Handle assemble_app(const char *title, Uint64 width, Uint64 height) {
+Hull_Handle assemble_app(
+    const char* title,
+    Uint64 width,
+    Uint64 height,
+    MX_Render_Modification game_render
+  ) {
+    
   //TTF_Init();
   //Sint64 img_flags = IMG_INIT_PNG;
   //Sint64 img_initted = IMG_Init(img_flags);
@@ -15,14 +20,19 @@ Hull_Handle assemble_app(const char *title, Uint64 width, Uint64 height) {
   //  return NULL;
   //}
   //SDL_Log("SDL_image initialized successfully");
-  
+    
   struct MX_Hull* hull = (struct MX_Hull*)SDL_malloc(sizeof(struct MX_Hull));
   if (!hull) {
       return NULL;
   }
   SDL_memset(hull, 0, sizeof(struct MX_Hull));
   
-  hull->window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN);
+  hull->window = SDL_CreateWindow(title,
+                                  SDL_WINDOWPOS_CENTERED,
+                                  SDL_WINDOWPOS_CENTERED,
+                                  width,
+                                  height,
+                                  SDL_WINDOW_SHOWN);
   // hull->controls = create_controls();
   hull->renderer = create_renderer(SDL_CreateRenderer(hull->window, -1, SDL_RENDERER_ACCELERATED));
   hull->motor = create_motor();
@@ -30,19 +40,20 @@ Hull_Handle assemble_app(const char *title, Uint64 width, Uint64 height) {
   //hull->ui = create_ui();
   //hull->navigation = create_scene_manager();
   
+  
   //transition_to_scene((void*)hull, SCENE_SPLASH);
   
+  // Add render modifications
   // should be handled better probably as an inital part of renderer creation / intitialization
-  
-  add_render_modification((Hull_Handle)hull, render_grid);
-  
+  add_render_modification((Hull_Handle)hull, render_grid);  
   //add_render_modification(hull, render_all_enemies);
   //add_render_modification(hull, render_ui);
+  add_render_modification((Hull_Handle)hull, game_render);  // Game rendering
   
   char base_path[256];
   SDL_GetBasePath();
   SDL_Log("Base Path is: %s", SDL_GetBasePath());
-   
+  
   return (Hull_Handle)hull;
 }
 
