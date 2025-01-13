@@ -20,10 +20,10 @@ void* create_stack(Uint64 element_size, Uint64 max_elements) {
     s->max_elements = max_elements;
     s->top = 0;
     
-    return (void*)s;
+    return (MX_Stack_Handle)s;
 }
 
-void destroy_stack(void* s) {
+void destroy_stack(MX_Stack_Handle s) {
     Stack* stack = (Stack*)s;
     if (stack) {
         if (stack->data) {
@@ -33,7 +33,7 @@ void destroy_stack(void* s) {
     }
 }
 
-void* peek_stack(void* s) {
+void* peek_stack(MX_Stack_Handle s) {
     Stack* stack = (Stack*)s;
     
     if (stack->top == 0) {
@@ -43,7 +43,7 @@ void* peek_stack(void* s) {
     return (Uint8*)stack->data + ((stack->top - 1) * stack->element_size);
 }
 
-Uint64 push_stack(void* s, void* element) {
+Uint64 push_stack(MX_Stack_Handle s, void* element) {
     Stack* stack = (Stack*)s;
     
     if (stack->top >= stack->max_elements) {
@@ -58,7 +58,7 @@ Uint64 push_stack(void* s, void* element) {
     return 1;
 }
 
-void* pop_stack(void* s) {
+void* pop_stack(MX_Stack_Handle s) {
     Stack* stack = (Stack*)s;
     
     if (stack->top == 0) {

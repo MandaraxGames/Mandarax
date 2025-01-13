@@ -21,7 +21,7 @@ void destroy_renderer(MX_Renderer_Handle renderer_handle) {
   }
 }
 
-void perform_rendering(void *hull_handle) {
+void perform_rendering(MX_Hull_Handle hull_handle) {
   struct MX_Renderer *renderer = (struct MX_Renderer*)hull_handle;
 
   if (renderer && renderer->renderer) {
@@ -36,7 +36,7 @@ void perform_rendering(void *hull_handle) {
   }
 }
 
-void add_render_modification(void *hull_handle, MX_Render_Function mod) {
+void add_render_modification(MX_Hull_Handle hull_handle, MX_Render_Function mod) {
   struct MX_Renderer *renderer = (struct MX_Renderer*)hull_handle;
 
   if (renderer && renderer->mod_count < MAX_MODIFICATIONS) {

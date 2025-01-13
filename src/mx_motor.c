@@ -16,7 +16,7 @@ void destroy_motor(MX_Motor_Handle motor_handle) {
   SDL_free(motor);
 }
 
-void run_game_loop(void* hull_handle, void (*update)(Uint64 delta_ms)) {
+void run_game_loop(MX_Hull_Handle hull_handle, void (*update)(Uint64 delta_ms)) {
   if (motor->running) {
     struct MX_Hull *hull = (struct MX_Hull*)hull_handle;
     struct MX_Motor *motor = (struct MX_Motor*)hull->motor;
@@ -43,13 +43,13 @@ void run_game_loop(void* hull_handle, void (*update)(Uint64 delta_ms)) {
   }
 }
 
-void end_game_loop(void *hull_handle) {
+void end_game_loop(MX_Hull_Handle hull_handle) {
   struct MX_Hull *hull = (struct MX_Hull*)hull_handle;
   struct MX_Motor *motor = (struct MX_Motor*)hull->motor;
   motor->running = 0;
 }
 
-Uint64 is_running(void *hull_handle) {
+Uint64 is_running(MX_Hull_Handle hull_handle) {
   struct MX_Hull *hull = (struct MX_Hull*)hull_handle;
   struct MX_Motor *motor = (struct MX_Motor*)hull->motor;
   return motor->running;

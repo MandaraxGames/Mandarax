@@ -5,7 +5,7 @@
 #include "mx_scene.h"
 #include "mx_general_internal.h"
 
-Hull_Handle assemble_app(
+MX_HullHandle assemble_app(
     const char* title,
     Uint64 width,
     Uint64 height,
@@ -45,19 +45,19 @@ Hull_Handle assemble_app(
   
   // Add render modifications
   // should be handled better probably as an inital part of renderer creation / intitialization
-  add_render_modification((Hull_Handle)hull, render_grid);  
+  add_render_modification((MX_Hull_Handle)hull, render_grid);  
   //add_render_modification(hull, render_all_enemies);
   //add_render_modification(hull, render_ui);
-  add_render_modification((Hull_Handle)hull, game_render);  // Game rendering
+  add_render_modification((MX_Hull_Handle)hull, game_render);  // Game rendering
   
   char base_path[256];
   SDL_GetBasePath();
   SDL_Log("Base Path is: %s", SDL_GetBasePath());
   
-  return (Hull_Handle)hull;
+  return (MX_Hull_Handle)hull;
 }
 
-void disassemble_app(Hull_Handle hull_handle) {
+void disassemble_app(MX_Hull_Handle hull_handle) {
   struct MX_Hull* hull = (struct MX_Hull*)hull_handle;
   if (!hull) return;
   //TTF_CloseFont(font);
@@ -74,7 +74,7 @@ void disassemble_app(Hull_Handle hull_handle) {
   SDL_free(hull);
 }
 
-void render_grid(Hull_Handle hull_handle) {
+void render_grid(MX_Hull_Handle hull_handle) {
   struct MX_Hull* hull = (struct MX_Hull*)hull_handle;
   if (!hull || !hull->renderer) return;
   
