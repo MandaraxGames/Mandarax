@@ -2,16 +2,16 @@
 #include "mx_general_internal.h"
 
 void* create_stack(Uint64 element_size, Uint64 max_elements) {
-    Stack* s = (Stack*)SDL_malloc(sizeof(Stack));
+    MX_Stack* s = (MX_Stack*)SDL_malloc(sizeof(MX_Stack));
     if (!s) {
-        SDL_Log("Failed to allocate memory for Stack.");
+        SDL_Log("Failed to allocate memory for MX_Stack.");
         return NULL;
     }
-    SDL_memset(s, 0, sizeof(Stack));
+    SDL_memset(s, 0, sizeof(MX_Stack));
     
     s->data = SDL_malloc(element_size * max_elements);
     if (!s->data) {
-        SDL_Log("Failed to allocate memory for Stack data.");
+        SDL_Log("Failed to allocate memory for MX_Stack data.");
         SDL_free(s);
         return NULL;
     }
@@ -24,7 +24,7 @@ void* create_stack(Uint64 element_size, Uint64 max_elements) {
 }
 
 void destroy_stack(MX_Stack_Handle s) {
-    Stack* stack = (Stack*)s;
+    MX_Stack* stack = (MX_Stack*)s;
     if (stack) {
         if (stack->data) {
             SDL_free(stack->data);
@@ -34,7 +34,7 @@ void destroy_stack(MX_Stack_Handle s) {
 }
 
 void* peek_stack(MX_Stack_Handle s) {
-    Stack* stack = (Stack*)s;
+    MX_Stack* stack = (MX_Stack*)s;
     
     if (stack->top == 0) {
         return NULL;
@@ -44,7 +44,7 @@ void* peek_stack(MX_Stack_Handle s) {
 }
 
 Uint64 push_stack(MX_Stack_Handle s, void* element) {
-    Stack* stack = (Stack*)s;
+    MX_Stack* stack = (MX_Stack*)s;
     
     if (stack->top >= stack->max_elements) {
         SDL_LogError(SDL_LOG_PRIORITY_CRITICAL, "Stack overflow - cannot push element");
@@ -59,7 +59,7 @@ Uint64 push_stack(MX_Stack_Handle s, void* element) {
 }
 
 void* pop_stack(MX_Stack_Handle s) {
-    Stack* stack = (Stack*)s;
+    MX_Stack* stack = (MX_Stack*)s;
     
     if (stack->top == 0) {
         return NULL;

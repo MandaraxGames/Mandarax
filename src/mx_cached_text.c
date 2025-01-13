@@ -3,12 +3,12 @@
 #include "mx_general_internal.h"
 
 void* create_cached_text(const char* text, Uint64 max_length) {
-    CachedText* cached = (CachedText*)SDL_malloc(sizeof(CachedText));
+    MX_CachedText* cached = (MX_CachedText*)SDL_malloc(sizeof(MX_CachedText));
     if (!cached) {
-        SDL_Log("Failed to allocate CachedText");
+        SDL_Log("Failed to allocate MX_CachedText");
         return NULL;
     }
-    SDL_memset(cached, 0, sizeof(CachedText));
+    SDL_memset(cached, 0, sizeof(MX_CachedText));
     
     // Create stack for text (one byte per character)
     cached->text_stack = create_stack(sizeof(char), max_length);
@@ -26,7 +26,7 @@ void* create_cached_text(const char* text, Uint64 max_length) {
 }
 
 void destroy_cached_text(void* cached_text_pointer) {
-    CachedText* text = (CachedText*)cached_text_pointer;
+    MX_CachedText* text = (MX_CachedText*)cached_text_pointer;
     if (text) {
         if (text->texture) {
             SDL_DestroyTexture(text->texture);
@@ -39,7 +39,7 @@ void destroy_cached_text(void* cached_text_pointer) {
 }
 
 void update_cached_text_texture(void* cached_text_pointer, SDL_Renderer* renderer) {
-    CachedText* text = (CachedText*)cached_text_pointer;
+    MX_CachedText* text = (MX_CachedText*)cached_text_pointer;
     if (!text || !text->text_stack) return;
 
     if (text->texture) {
@@ -81,7 +81,7 @@ void update_cached_text_texture(void* cached_text_pointer, SDL_Renderer* rendere
 }
 
 void get_cached_text_dimensions(void* cached_text_pointer, Uint64* width, Uint64* height) {
-    CachedText* text = (CachedText*)cached_text_pointer;
+    MX_CachedText* text = (MX_CachedText*)cached_text_pointer;
     if (text) {
         *width = text->width;
         *height = text->height;
@@ -92,19 +92,19 @@ void get_cached_text_dimensions(void* cached_text_pointer, Uint64* width, Uint64
 }
 
 void render_cached_text(void* cached_text_pointer, SDL_Renderer* renderer, SDL_Rect* dstrect) {
-    CachedText* text = (CachedText*)cached_text_pointer;
+    MX_CachedText* text = (MX_CachedText*)cached_text_pointer;
     if (text && text->texture) {
         SDL_RenderCopy(renderer, text->texture, NULL, dstrect);
     }
 }
 
 Uint64 has_remaining_text(void* cached_text_pointer) {
-    CachedText* text = (CachedText*)cached_text_pointer;
+    MX_CachedText* text = (MX_CachedText*)cached_text_pointer;
     return text && text->text_stack && text->text_stack->top > 0;
 }
 
 void reset_cached_text(void* cached_text_pointer, const char* new_text) {
-    CachedText* text = (CachedText*)cached_text_pointer;
+    MX_CachedText* text = (MX_CachedText*)cached_text_pointer;
     if (!text || !text->text_stack) return;
     
     // Reset stack
@@ -127,7 +127,7 @@ void reset_cached_text(void* cached_text_pointer, const char* new_text) {
 }
 
 Uint64 process_typed_character(void* cached_text_pointer, char typed) {
-    CachedText* text = (CachedText*)cached_text_pointer;
+    MX_CachedText* text = (MX_CachedText*)cached_text_pointer;
     if (!text || !text->text_stack || text->text_stack->top == 0) return 0;
     
     // Check if typed character matches first character in stack

@@ -2,12 +2,12 @@
 #include "mx_general_internal.h"
 
 void *create_scene_manager(void) {
-  SceneManager *manager = (SceneManager*)SDL_malloc(sizeof(SceneManager));
+  MX_SceneManager *manager = (MX_SceneManager*)SDL_malloc(sizeof(MX_SceneManager));
   if (!manager) {
-    SDL_Log("Failed to allocate memory for SceneManager");
+    SDL_Log("Failed to allocate memory for MX_SceneManager");
     return NULL;
   }
-  SDL_memset(manager, 0, sizeof(SceneManager));
+  SDL_memset(manager, 0, sizeof(MX_SceneManager));
   
   void *new_scene_instance = SDL_malloc(sizeof(Scene));
   if (!new_scene_instance) {
@@ -28,7 +28,7 @@ void *create_scene_manager(void) {
 }
 
 void destroy_scene_manager(void *scene_manager_pointer) {
-  SceneManager *manager = (SceneManager*)scene_manager_pointer;
+  MX_SceneManager *manager = (MX_SceneManager*)scene_manager_pointer;
   
   if (manager->current_scene) {
     if (((Scene*)manager->current_scene)->cleanup) {
@@ -49,7 +49,7 @@ void destroy_scene_manager(void *scene_manager_pointer) {
 
 void transition_to_scene(void *hull_pointer, Uint64 new_scene) {
   Hull *hull = (Hull*)hull_pointer;
-  SceneManager *manager = (SceneManager*)hull->navigation;
+  MX_SceneManager *manager = (MX_SceneManager*)hull->navigation;
   
   if (manager->transitioning) {
     SDL_Log("Scene transition already in progress");
@@ -96,7 +96,7 @@ void transition_to_scene(void *hull_pointer, Uint64 new_scene) {
 
 void update_scene(void *hull_pointer) {
   Hull *hull = (Hull*)hull_pointer;
-  SceneManager *manager = ((SceneManager*)(hull->navigation));
+  MX_SceneManager *manager = ((MX_SceneManager*)(hull->navigation));
   
   if (manager->transitioning) {
     manager->transition_progress += 1;
@@ -138,7 +138,7 @@ void update_scene(void *hull_pointer) {
 
 void render_scene(void *hull_pointer) {
   Hull *hull = (Hull*)hull_pointer;
-  SceneManager *manager = (SceneManager*)hull->navigation;
+  MX_SceneManager *manager = (MX_SceneManager*)hull->navigation;
   
   if (manager->transitioning) {
     if (manager->current_scene && ((Scene*)manager->current_scene)->render) {
