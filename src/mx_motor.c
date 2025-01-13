@@ -1,3 +1,4 @@
+#include <SDL_timer.h>
 #include "mx_motor.h"
 #include "mx_controls.h"
 #include "mx_renderer.h"
@@ -5,8 +6,8 @@
 
 MX_Motor_Handle create_motor() {
   struct MX_Motor *motor = (struct MX_Motor*)SDL_malloc(sizeof(struct MX_Motor));
-  SDL_memset(motor, 0, sizeof(struct MX_Motor));
-  motor->running = 1;
+  SDL_memset(motor, 0, sizeof(struct MX_Motor)); // sets all values to zero,
+  motor->running = 1; // only running needs a default value not equal to zero
   return (MX_Motor_Handle)motor;
 }
 
@@ -15,17 +16,32 @@ void destroy_motor(MX_Motor_Handle motor_handle) {
   SDL_free(motor);
 }
 
-void run_game_loop(void* hull_handle) {
-  struct MX_Hull *hull = (struct MX_Hull*)hull_handle;
-  struct MX_Motor *motor = (struct MX_Motor*)hull->motor;
-  
-  handle_input(hull_handle);
-  
+void run_game_loop(void* hull_handle, void (*update)(Uint64 delta_ms)) {
   if (motor->running) {
-    update_scene(hull_handle);
+    struct MX_Hull *hull = (struct MX_Hull*)hull_handle;
+    struct MX_Motor *motor = (struct MX_Motor*)hull->motor;
+    
+    motor->current_time = SDL_GetTicks64();
+    Uint64 frame_time = motor->current_time - motor->previous_time;
+    motor->previous_time = motor->current_time;
+    motor->accumulated_time += frame_time
+    Uint64 update_count = 0
+    
+    handle_input(hull_handle);
+    
+    while (motor->accumulated_time >= FIXED_DELTA && update_count < MAX_STEPS_PER_UPDATE) {
+      update(FIXED_DELTA)        // Game logic at fixed time step
+      motor->accumulated_time -= FIXED_DELTA
+      update_count++
+    }
+    
+    // If we hit max steps, we're running too slow - adjust accumulator
+    if (update_count >= MAX_STEPS_PER_UPDATE) {
+      motor->accumulated_time = 0.0
+    }
+    
+    render_scene(hull_handle);
   }
-  
-  render_scene(hull_handle);
 }
 
 void end_game_loop(void *hull_handle) {
