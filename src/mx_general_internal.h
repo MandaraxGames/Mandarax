@@ -47,7 +47,7 @@ typedef struct {
   Uint64 width;
   Uint64 height;
   SDL_Texture* texture;
-  Stack* text_stack;
+  MX_Stack* text_stack;
 } MX_CachedText;
 
 typedef struct {
@@ -74,10 +74,10 @@ typedef struct {
 
 typedef struct {
   MxSceneState state;
-  void (*initialize)(void* hull_pointer);
-  void (*update)(void* hull_pointer);
-  void (*render)(void* hull_pointer);
-  void (*cleanup)(void* hull_pointer);
+  void (*initialize)(MX_Hull_Handle hull_pointer);
+  void (*update)(MX_Hull_Handle hull_pointer);
+  void (*render)(MX_Hull_Handle hull_pointer);
+  void (*cleanup)(MX_Hull_Handle hull_pointer);
 } MX_Scene;
 
 typedef struct {
