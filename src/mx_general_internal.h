@@ -7,7 +7,7 @@
 //#include <SDL_ttf.h>
 //#include <SDL_image.h>
 
-typedef struct MX_PushDownAutomata;
+typedef struct MX_PushDownAutomata *MX_PushDownAutomata_Pointer;
 
 typedef enum {
     MX_HULL_REQUIRED     = 0x0001,  // Window + Motor + Renderer (minimum)
@@ -33,7 +33,7 @@ typedef struct {
 } MX_Stack;
 
 typedef struct MX_State {
-  MX_PushDownAutomata* parent; // Points to parent state/manager
+  MX_PushDownAutomata_Pointer parent; // Points to parent state/manager
   MX_Stack* states;            // Stack of sub-states
   void* context;               // State-specific data
 } MX_State;
