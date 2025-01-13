@@ -1,7 +1,11 @@
 #ifndef GENERAL_INTERNAL_H
 #define GENERAL_INTERNAL_H
 
-#include "mx_common.h"
+#include <SDL.h>
+#include <SDL_stdinc.h>
+//#include <SDL_timer.h>
+//#include <SDL_ttf.h>
+//#include <SDL_image.h>
 
 typedef struct MX_PushDownAutomata;
 
