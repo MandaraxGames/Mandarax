@@ -19,7 +19,7 @@ void* create_cached_text(const char* text, Uint64 max_length) {
     
     // Push text into stack character by character
     for (const char* c = text; *c != '\0' && c < text + max_length; c++) {
-        push_stack(cached->text_stack, (void*)c);
+        push_stack((MX_Stack_Handle)cached->text_stack, (void*)c);
     }
     
     return cached;
@@ -40,7 +40,9 @@ void destroy_cached_text(void* cached_text_pointer) {
 
 void update_cached_text_texture(void* cached_text_pointer, SDL_Renderer* renderer) {
     MX_CachedText* text = (MX_CachedText*)cached_text_pointer;
-    if (!text || !text->text_stack) return;
+    MX_Stack* text_stack = (MX_Stack*)(text->text_stack);
+    
+    if (!text || !text_stack) return;
 
     if (text->texture) {
         SDL_DestroyTexture(text->texture);
@@ -50,13 +52,13 @@ void update_cached_text_texture(void* cached_text_pointer, SDL_Renderer* rendere
     }
     
     // Reconstruct current text string from stack
-    char* current_text = SDL_malloc(text->text_stack->max_elements + 1);
+    char* current_text = SDL_malloc(text_stack->max_elements + 1);
     if (!current_text) return;
     
-    for (Uint64 i = 0; i < text->text_stack->top; i++) {
-        current_text[i] = *(char*)((Uint8*)text->text_stack->data + i);
+    for (Uint64 i = 0; i < text_stack->top; i++) {
+        current_text[i] = *(char*)((Uint8*)text_stack->data + i);
     }
-    current_text[text->text_stack->top] = '\0';
+    current_text[text_stack->top] = '\0';
     
     SDL_Color color = {255, 255, 255};
     SDL_Surface* surface = TTF_RenderText_Solid(font, current_text, color);
@@ -100,21 +102,23 @@ void render_cached_text(void* cached_text_pointer, SDL_Renderer* renderer, SDL_R
 
 Uint64 has_remaining_text(void* cached_text_pointer) {
     MX_CachedText* text = (MX_CachedText*)cached_text_pointer;
-    return text && text->text_stack && text->text_stack->top > 0;
+    MX_Stack* text_stack = (MX_Stack*)(text->text_stack);
+    return text && text_stack && text_stack->top > 0;
 }
 
 void reset_cached_text(void* cached_text_pointer, const char* new_text) {
     MX_CachedText* text = (MX_CachedText*)cached_text_pointer;
-    if (!text || !text->text_stack) return;
+    MX_Stack* text_stack = (MX_Stack*)(text->text_stack);
+    if (!text || !text_stack) return;
     
     // Reset stack
-    text->text_stack->top = 0;
+    text_stack->top = 0;
     
     // Push new text into stack
     for (const char* c = new_text; 
-         *c != '\0' && text->text_stack->top < text->text_stack->max_elements; 
+         *c != '\0' && text_stack->top < text_stack->max_elements; 
          c++) {
-        push_stack(text->text_stack, (void*)c);
+        push_stack(text_stack, (void*)c);
     }
     
     // Clear existing texture
@@ -128,10 +132,11 @@ void reset_cached_text(void* cached_text_pointer, const char* new_text) {
 
 Uint64 process_typed_character(void* cached_text_pointer, char typed) {
     MX_CachedText* text = (MX_CachedText*)cached_text_pointer;
-    if (!text || !text->text_stack || text->text_stack->top == 0) return 0;
+    MX_Stack* text_stack = (MX_Stack*)(text->text_stack);
+    if (!text || !text_stack || text_stack->top == 0) return 0;
     
     // Check if typed character matches first character in stack
-    char* first_char = (char*)text->text_stack->data;
+    char* first_char = (char*)text_stack->data;
     if (typed == *first_char) {
         // Shift all characters left by one
         for (Uint64 i = 0; i < text->text_stack->top - 1; i++) {
