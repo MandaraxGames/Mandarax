@@ -1,7 +1,6 @@
 #include "mx_controls.h"
 #include "mx_stack.h"
 #include "mx_motor.h"
-#include "mx_menu_scene.h"
 #include "mx_game_scene.h"
 #include "mx_general_internal.h"
 
@@ -19,14 +18,14 @@ void destroy_controls(void *controls_pointer) {
   MX_Controls *controls = (MX_Controls*)controls_pointer;
     
   if (controls->input_stack) {
-    destroy_stack(controls->input_stack);
+    destroy_stack((MX_Stack_Handle)controls->input_stack);
   }
     
   SDL_free(controls);
 }
 
 void handle_input(void *hull_pointer) {
-  Hull *hull = ((Hull*)hull_pointer);
+  MX_Hull *hull = ((MX_Hull*)hull_pointer);
   MX_Controls *controls = (MX_Controls*)((hull)->controls);
 
   while (SDL_PollEvent(&controls->event)) {
@@ -37,11 +36,9 @@ void handle_input(void *hull_pointer) {
 
         switch(key) {
           case SDLK_ESCAPE:
-            toggle_game_pause(hull_pointer);
             break;
 
           case SDLK_RETURN:
-            toggle_menu_scene(hull_pointer);
             break;
 
           default:
@@ -57,7 +54,6 @@ void handle_input(void *hull_pointer) {
       case SDL_MOUSEBUTTONUP: {
         int x, y;
         SDL_GetMouseState(&x, &y);
-        handle_ui_click(hull_pointer, (Sint64)x, (Sint64)y);
         break;
       }
     }

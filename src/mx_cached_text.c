@@ -32,7 +32,7 @@ void destroy_cached_text(void* cached_text_pointer) {
             SDL_DestroyTexture(text->texture);
         }
         if (text->text_stack) {
-            destroy_stack(text->text_stack);
+            destroy_stack((MX_Stack_Handle)text->text_stack);
         }
         SDL_free(text);
     }
