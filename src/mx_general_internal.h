@@ -7,8 +7,6 @@
 //#include <SDL_ttf.h>
 //#include <SDL_image.h>
 
-typedef struct MX_PushDownAutomata *MX_PushDownAutomata_Pointer;
-
 typedef enum {
     MX_HULL_REQUIRED     = 0x0001,  // Window + Motor + Renderer (minimum)
     MX_HULL_RENDERER     = 0x0002,  // Additional renderers
@@ -16,14 +14,14 @@ typedef enum {
     MX_HULL_CONTROLS     = 0x0010,  // Input handling
     MX_HULL_NAVIGATION   = 0x0020,  // Scene management
     MX_HULL_UI           = 0x0040,  // User interface
-} MxHullFlags;
+} MX_HullFlags;
 
 typedef enum {
     MX_SCENE_STATE_IDLE,
     MX_SCENE_STATE_TRANSITIONING_IN,
     MX_SCENE_STATE_ACTIVE,
     MX_SCENE_STATE_TRANSITIONING_OUT
-} MxSceneState;
+} MX_SceneState;
 
 typedef struct {
   void* data;
@@ -33,13 +31,13 @@ typedef struct {
 } MX_Stack;
 
 typedef struct MX_State {
-  MX_PushDownAutomata_Pointer parent; // Points to parent state/manager
-  MX_Stack* states;            // Stack of sub-states
+  MX_PushDownAutomata_Handle parent; // Points to parent state/manager
+  MX_Stack_Handle states;            // Stack of sub-states
   void* context;               // State-specific data
 } MX_State;
 
 typedef struct {
-  MX_Stack* states;     // Root level state stack
+  MX_Stack_Handle states;     // Root level state stack
   void* context;        // Global context data
 } MX_PushDownAutomata;
 
@@ -47,7 +45,7 @@ typedef struct {
   Uint64 width;
   Uint64 height;
   SDL_Texture* texture;
-  MX_Stack* text_stack;
+  MX_Stack_Handle text_stack;
 } MX_CachedText;
 
 typedef struct {
@@ -73,7 +71,7 @@ typedef struct {
 } MX_Motor;
 
 typedef struct {
-  MxSceneState state;
+  MX_SceneState state;
   void (*initialize)(MX_Hull_Handle hull_pointer);
   void (*update)(MX_Hull_Handle hull_pointer);
   void (*render)(MX_Hull_Handle hull_pointer);

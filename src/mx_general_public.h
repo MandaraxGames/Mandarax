@@ -21,7 +21,7 @@ typedef struct {
     Uint32 flags;          // Configuration flags
     //Uint8 renderer_count;  // Number of additional renderers
     //Uint8 manifest_count;  // Number of entity systems
-} MxConfig;
+} MX_Config;
 
 typedef struct MX_Stack* MX_Stack_Handle;
 typedef struct MX_State* MX_State_Handle;

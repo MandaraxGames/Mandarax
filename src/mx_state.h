@@ -1,7 +1,7 @@
 #ifndef STATE_H
 #define STATE_H
 
-#include "mx_common.h"
+#include "mx_general_public.h"
 
 MX_Stack_Handle createState(MX_PushDownAutomata_Handle psd, MX_Stack_Handle* states, void* context);
 void destroyState(MX_State_Handle s);
