@@ -24,23 +24,22 @@ void run_game_loop(void* hull_handle, void (*update)(Uint64 delta_ms)) {
     motor->current_time = SDL_GetTicks64();
     Uint64 frame_time = motor->current_time - motor->previous_time;
     motor->previous_time = motor->current_time;
-    motor->accumulated_time += frame_time
-    Uint64 update_count = 0
+    motor->accumulated_time += frame_time;
+    Uint64 update_count = 0;
     
     handle_input(hull_handle);
     
     while (motor->accumulated_time >= FIXED_DELTA && update_count < MAX_STEPS_PER_UPDATE) {
-      update(FIXED_DELTA)        // Game logic at fixed time step
-      motor->accumulated_time -= FIXED_DELTA
-      update_count++
+      update(FIXED_DELTA);   // Game logic at fixed time step
+      perform_rendering(hull_handle);
+      motor->accumulated_time -= FIXED_DELTA;
+      update_count++;
     }
     
     // If we hit max steps, we're running too slow - adjust accumulator
     if (update_count >= MAX_STEPS_PER_UPDATE) {
-      motor->accumulated_time = 0.0
+      motor->accumulated_time = 0;
     }
-    
-    render_scene(hull_handle);
   }
 }
 

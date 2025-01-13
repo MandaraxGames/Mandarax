@@ -4,12 +4,25 @@
 #include "mx_common.h"
 #include "mx_types.h"
 
+typedef struct MX_PushDownAutomata;
+
 typedef struct {
   void* data;
   Uint64 element_size;
   Uint64 max_elements;
   Uint64 top;
 } MX_Stack;
+
+typedef struct MX_State {
+  MX_PushDownAutomata* parent; // Points to parent state/manager
+  MX_Stack* states;            // Stack of sub-states
+  void* context;               // State-specific data
+} MX_State;
+
+typedef struct {
+  MX_Stack* states;     // Root level state stack
+  void* context;        // Global context data
+} MX_PushDownAutomata;
 
 typedef struct {
   Uint64 width;
