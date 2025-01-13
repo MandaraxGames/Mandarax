@@ -1,7 +1,7 @@
 #ifndef MOTOR_H
 #define MOTOR_H
 
-#include "mx_common.h"
+#include "mx_general_public.h"
 
 MX_Motor_Handle create_motor(void);
 void destroy_motor(MX_Motor_Handle motor_pointer);

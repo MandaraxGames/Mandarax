@@ -1,7 +1,7 @@
 #ifndef CACHED_TEXT_H
 #define CACHED_TEXT_H
 
-#include "mx_common.h"
+#include "mx_general_public.h"
 
 void* create_cached_text(const char* text, Uint64 max_length);
 void destroy_cached_text(void* cached_text_pointer);

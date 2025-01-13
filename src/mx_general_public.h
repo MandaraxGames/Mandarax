@@ -1,6 +1,12 @@
 #ifndef GENERAL_PUBLIC_H
 #define GENERAL_PUBLIC_H
 
+#include <SDL.h>
+#include <SDL_stdinc.h>
+#include <SDL_timer.h>
+#include <SDL_ttf.h>
+#include <SDL_image.h>
+
 #define SCREEN_WIDTH 1024
 #define SCREEN_HEIGHT 576
 

@@ -1,7 +1,7 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
-#include "mx_common.h"
+#include "mx_general_public.h"
 
 MX_Renderer_Handle create_renderer(SDL_Renderer *sdl_renderer);
 void destroy_renderer(MX_Renderer_Handle renderer_handle);

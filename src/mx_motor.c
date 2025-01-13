@@ -1,4 +1,3 @@
-#include <SDL_timer.h>
 #include "mx_motor.h"
 #include "mx_controls.h"
 #include "mx_renderer.h"
