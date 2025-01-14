@@ -93,8 +93,8 @@ typedef struct {
 typedef struct {
   // Required components
   SDL_Window* window;
-  MX_Motor_Handle* motor;
-  MX_Renderer_Handle* renderer;    // Required primary renderer
+  MX_Motor_Handle motor;
+  MX_Renderer_Handle renderer;    // Required primary renderer
   
   // Optional entity systems (MX_HULL_MANIFEST)
   // Uint8 manifest_count;
