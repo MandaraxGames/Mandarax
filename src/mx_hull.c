@@ -5,12 +5,7 @@
 #include "mx_scene.h"
 #include "mx_general_internal.h"
 
-MX_HullHandle assemble_app(
-    const char* title,
-    Uint64 width,
-    Uint64 height,
-    MX_Render_Modification game_render
-  ) {
+MX_Hull_Handle assemble_app(const char* title, Uint64 width, Uint64 height, MX_Render_Modification game_render) {
     
   //TTF_Init();
   //Sint64 img_flags = IMG_INIT_PNG;
