@@ -16,7 +16,7 @@ MX_Hull_Handle assemble_app(const char* title, Uint64 width, Uint64 height, MX_R
   //}
   //SDL_Log("SDL_image initialized successfully");
     
-  struct MX_Hull* hull = (MX_Hull*)SDL_malloc(sizeof(MX_Hull));
+  MX_Hull* hull = (MX_Hull*)SDL_malloc(sizeof(MX_Hull));
   if (!hull) {
       return NULL;
   }
