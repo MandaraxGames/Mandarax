@@ -37,7 +37,7 @@ void perform_rendering(MX_Hull_Handle hull_handle) {
 }
 
 void add_render_modification(MX_Hull_Handle hull_handle, MX_RenderFunction mod) {
-  MX_Renderer *renderer = (MX_Renderer*)hull_handle;
+  MX_Renderer *renderer = (MX_Renderer*)((MX_Hull*)hull_handle)->renderer;
 
   if (renderer && renderer->mod_count < MAX_MODIFICATIONS) {
     renderer->render_modifications[renderer->mod_count++] = mod;
