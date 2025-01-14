@@ -22,7 +22,7 @@ void destroy_renderer(MX_Renderer_Handle renderer_handle) {
 }
 
 void perform_rendering(MX_Hull_Handle hull_handle) {
-  MX_Renderer *renderer = (MX_Renderer*)hull_handle;
+  MX_Renderer *renderer = (MX_Renderer*)((MX_Hull*)hull_handle)->renderer;
 
   if (renderer && renderer->renderer) {
     SDL_SetRenderDrawColor(renderer->renderer, 0, 0, 0, 255);
@@ -36,7 +36,7 @@ void perform_rendering(MX_Hull_Handle hull_handle) {
   }
 }
 
-void add_render_modification(MX_Hull_Handle hull_handle, MX_Render_Function mod) {
+void add_render_modification(MX_Hull_Handle hull_handle, MX_RenderFunction mod) {
   MX_Renderer *renderer = (MX_Renderer*)hull_handle;
 
   if (renderer && renderer->mod_count < MAX_MODIFICATIONS) {

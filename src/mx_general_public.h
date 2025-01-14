@@ -27,7 +27,7 @@ typedef struct MX_Stack* MX_Stack_Handle;
 typedef struct MX_State* MX_State_Handle;
 typedef struct MX_PushDownAutomata* MX_PushDownAutomata_Handle;
 typedef struct MX_Renderer* MX_Renderer_Handle;
-typedef void (*MX_Render_Function)(SDL_Renderer*);
+typedef void (*MX_RenderFunction)(SDL_Renderer*);
 typedef struct MX_Motor* MX_Motor_Handle;
 typedef struct MX_Hull* MX_Hull_Handle;
 
