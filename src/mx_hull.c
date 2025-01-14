@@ -53,7 +53,7 @@ MX_Hull_Handle assemble_app(const char* title, Uint64 width, Uint64 height, MX_R
 }
 
 void disassemble_app(MX_Hull_Handle hull_handle) {
-  struct MX_Hull* hull = (MX_Hull*)hull_handle;
+  MX_Hull* hull = (MX_Hull*)hull_handle;
   if (!hull) return;
   //TTF_CloseFont(font);
   //TTF_Quit();
@@ -70,7 +70,7 @@ void disassemble_app(MX_Hull_Handle hull_handle) {
 }
 
 void render_grid(MX_Hull_Handle hull_handle) {
-  struct MX_Hull* hull = (MX_Hull*)hull_handle;
+  MX_Hull* hull = (MX_Hull*)hull_handle;
   if (!hull || !hull->renderer) return;
   
   SDL_Renderer* renderer = ((MX_Renderer*)hull->renderer)->renderer;

@@ -16,9 +16,9 @@ void destroy_motor(MX_Motor_Handle motor_handle) {
 }
 
 void run_game_loop(MX_Hull_Handle hull_handle, void (*update)(Uint64 delta_ms)) {
+  MX_Hull *hull = (MX_Hull*)hull_handle;
+  MX_Motor *motor = (MX_Motor*)hull->motor;
   if (motor->running) {
-    MX_Hull *hull = (MX_Hull*)hull_handle;
-    MX_Motor *motor = (MX_Motor*)hull->motor;
     
     motor->current_time = SDL_GetTicks64();
     Uint64 frame_time = motor->current_time - motor->previous_time;
