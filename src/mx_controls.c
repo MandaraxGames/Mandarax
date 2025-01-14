@@ -42,7 +42,7 @@ void handle_input(void *hull_pointer) {
 
           default:
             if ((GameState)get_game_state() == GAME_STATE_PLAYING && is_specific_key(key)) {
-              Uint64 err = push_on_stack(controls->input_stack, (char)key);
+              Uint64 err = push_on_stack((MX_Stack_Handle)controls->input_stack, (char)key);
               SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_INFO, "pushed char %c with error %i", key, err);
             }
             break;

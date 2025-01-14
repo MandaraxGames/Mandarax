@@ -118,7 +118,7 @@ void reset_cached_text(void* cached_text_pointer, const char* new_text) {
     for (const char* c = new_text; 
          *c != '\0' && text_stack->top < text_stack->max_elements; 
          c++) {
-        push_stack(text_stack, (void*)c);
+        push_stack((MX_Stack_Handle)text_stack, (void*)c);
     }
     
     // Clear existing texture
@@ -139,12 +139,12 @@ Uint64 process_typed_character(void* cached_text_pointer, char typed) {
     char* first_char = (char*)text_stack->data;
     if (typed == *first_char) {
         // Shift all characters left by one
-        for (Uint64 i = 0; i < text->text_stack->top - 1; i++) {
-            char* curr = (char*)((Uint8*)text->text_stack->data + i);
-            char* next = (char*)((Uint8*)text->text_stack->data + i + 1);
+        for (Uint64 i = 0; i < text_stack->top - 1; i++) {
+            char* curr = (char*)((Uint8*)text_stack->data + i);
+            char* next = (char*)((Uint8*)text_stack->data + i + 1);
             *curr = *next;
         }
-        text->text_stack->top--;
+        text_stack->top--;
         return 1;
     }
     return 0;

@@ -49,6 +49,11 @@ typedef struct {
 } MX_CachedText;
 
 typedef struct {
+  SDL_Event event;
+  MX_Stack_Handle input_stack;
+} MX_Controls;
+
+typedef struct {
   SDL_Renderer* renderer;
   Sint64 mod_count;
   Sint64 max_modifications;
