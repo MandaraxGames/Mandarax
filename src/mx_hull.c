@@ -5,7 +5,7 @@
 #include "mx_scene.h"
 #include "mx_general_internal.h"
 
-MX_Hull_Handle assemble_app(const char* title, Uint64 width, Uint64 height, MX_Renderer_Modification game_render) {
+MX_Hull_Handle assemble_app(const char* title, Uint64 width, Uint64 height, MX_Render_Modification game_render) {
     
   //TTF_Init();
   //Sint64 img_flags = IMG_INIT_PNG;
@@ -16,11 +16,11 @@ MX_Hull_Handle assemble_app(const char* title, Uint64 width, Uint64 height, MX_R
   //}
   //SDL_Log("SDL_image initialized successfully");
     
-  struct MX_Hull* hull = (struct MX_Hull*)SDL_malloc(sizeof(struct MX_Hull));
+  struct MX_Hull* hull = (MX_Hull*)SDL_malloc(sizeof(MX_Hull));
   if (!hull) {
       return NULL;
   }
-  SDL_memset(hull, 0, sizeof(struct MX_Hull));
+  SDL_memset(hull, 0, sizeof(MX_Hull));
   
   hull->window = SDL_CreateWindow(title,
                                   SDL_WINDOWPOS_CENTERED,
@@ -53,7 +53,7 @@ MX_Hull_Handle assemble_app(const char* title, Uint64 width, Uint64 height, MX_R
 }
 
 void disassemble_app(MX_Hull_Handle hull_handle) {
-  struct MX_Hull* hull = (struct MX_Hull*)hull_handle;
+  struct MX_Hull* hull = (MX_Hull*)hull_handle;
   if (!hull) return;
   //TTF_CloseFont(font);
   //TTF_Quit();
@@ -70,10 +70,10 @@ void disassemble_app(MX_Hull_Handle hull_handle) {
 }
 
 void render_grid(MX_Hull_Handle hull_handle) {
-  struct MX_Hull* hull = (struct MX_Hull*)hull_handle;
+  struct MX_Hull* hull = (MX_Hull*)hull_handle;
   if (!hull || !hull->renderer) return;
   
-  SDL_Renderer* renderer = ((struct MX_Renderer*)hull->renderer)->renderer;
+  SDL_Renderer* renderer = ((MX_Renderer*)hull->renderer)->renderer;
   int cell_size = 64;
   SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 

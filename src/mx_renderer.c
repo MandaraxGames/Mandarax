@@ -2,7 +2,7 @@
 #include "mx_general_internal.h"
 
 void *create_renderer(SDL_Renderer *sdl_renderer) {
-  struct MX_Renderer *renderer = (struct MX_Renderer*)SDL_malloc(sizeof(struct MX_Renderer));
+  MX_Renderer *renderer = (MX_Renderer*)SDL_malloc(sizeof(MX_Renderer));
   SDL_memset(renderer, 0, sizeof(MX_Renderer));
   renderer->renderer = sdl_renderer;
   renderer->mod_count = 0;
@@ -11,7 +11,7 @@ void *create_renderer(SDL_Renderer *sdl_renderer) {
 }
 
 void destroy_renderer(MX_Renderer_Handle renderer_handle) {
-  struct MX_Renderer *renderer = (struct MX_Renderer*)renderer_handle;
+  MX_Renderer *renderer = (MX_Renderer*)renderer_handle;
 
   if (renderer) {
     if (renderer->renderer) {
@@ -22,7 +22,7 @@ void destroy_renderer(MX_Renderer_Handle renderer_handle) {
 }
 
 void perform_rendering(MX_Hull_Handle hull_handle) {
-  struct MX_Renderer *renderer = (struct MX_Renderer*)hull_handle;
+  MX_Renderer *renderer = (MX_Renderer*)hull_handle;
 
   if (renderer && renderer->renderer) {
     SDL_SetRenderDrawColor(renderer->renderer, 0, 0, 0, 255);
@@ -37,7 +37,7 @@ void perform_rendering(MX_Hull_Handle hull_handle) {
 }
 
 void add_render_modification(MX_Hull_Handle hull_handle, MX_Render_Function mod) {
-  struct MX_Renderer *renderer = (struct MX_Renderer*)hull_handle;
+  MX_Renderer *renderer = (MX_Renderer*)hull_handle;
 
   if (renderer && renderer->mod_count < MAX_MODIFICATIONS) {
     renderer->render_modifications[renderer->mod_count++] = mod;
