@@ -91,7 +91,7 @@ typedef struct {
 } MX_SceneManager;
 
 // Main hull structure reflecting mx_types.h configuration
-struct MX_Hull {
+typedef struct {
   // Required components
   SDL_Window* window;
   MX_Motor* motor;
@@ -105,6 +105,6 @@ struct MX_Hull {
   // Controls* controls;    // MX_HULL_CONTROLS
   // SceneManager* navigation;  // MX_HULL_NAVIGATION
   // void* ui;             // MX_HULL_UI
-};
+} MX_Hull;
 
 #endif // GENERAL_INTERNAL_H

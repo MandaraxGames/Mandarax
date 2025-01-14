@@ -8,7 +8,7 @@ int is_specific_key(SDL_Keycode key);
 void *create_controls(void) {
   MX_Controls *controls = (MX_Controls*)SDL_malloc(sizeof(MX_Controls));
   SDL_memset(controls, 0, sizeof(MX_Controls));
-  controls->input_stack = create_stack();
+  controls->input_stack = create_stack(sizeof(char), max_length);
     
   return (void*)controls;
 }
@@ -24,8 +24,8 @@ void destroy_controls(void *controls_pointer) {
 }
 
 void handle_input(void *hull_pointer) {
-  MX_Hull *hull = ((MX_Hull*)hull_pointer);
-  MX_Controls *controls = (MX_Controls*)((hull)->controls);
+  MX_Hull *hull = (MX_Hull*)hull_pointer;
+  MX_Controls *controls = (MX_Controls*)(hull->controls);
 
   while (SDL_PollEvent(&controls->event)) {
     switch (controls->event.type) {
