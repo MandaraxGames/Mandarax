@@ -90,12 +90,11 @@ typedef struct {
   void* next_scene;
 } MX_SceneManager;
 
-// Main hull structure reflecting mx_types.h configuration
 typedef struct {
   // Required components
   SDL_Window* window;
-  MX_Motor* motor;
-  MX_Renderer* renderer;    // Required primary renderer
+  MX_Motor_Handle* motor;
+  MX_Renderer_Handle* renderer;    // Required primary renderer
   
   // Optional entity systems (MX_HULL_MANIFEST)
   // Uint8 manifest_count;
