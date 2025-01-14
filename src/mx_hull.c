@@ -69,7 +69,7 @@ void disassemble_app(MX_Hull_Handle hull_handle) {
   SDL_free(hull);
 }
 
-void render_grid(MX_Hull_Handle hull_handle) {
+MX_RenderFunction render_grid(MX_Hull_Handle hull_handle) {
   MX_Hull* hull = (MX_Hull*)hull_handle;
   if (!hull || !hull->renderer) return;
   
