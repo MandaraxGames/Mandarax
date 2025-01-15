@@ -69,11 +69,8 @@ void disassemble_app(MX_Hull_Handle hull_handle) {
   SDL_free(hull);
 }
 
-MX_RenderFunction render_grid(MX_Hull_Handle hull_handle) {
-  MX_Hull* hull = (MX_Hull*)hull_handle;
-  if (!hull || !hull->renderer) return;
-  
-  SDL_Renderer* renderer = ((MX_Renderer*)hull->renderer)->renderer;
+void render_grid(SDL_Renderer* renderer) {
+  if (!renderer) return;
   int cell_size = 64;
   SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 
