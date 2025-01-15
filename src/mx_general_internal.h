@@ -69,10 +69,10 @@ typedef struct {
 } MX_Manifest;
 
 typedef struct {
-  Uint64 running;
-  Uint64 current_time;     // In milliseconds
-  Uint64 previous_time;    // In milliseconds
-  Uint64 accumulated_time; // In milliseconds
+  SDL_bool running;
+  float current_time;     // In milliseconds
+  float previous_time;    // In milliseconds
+  float accumulated_time; // In milliseconds
 } MX_Motor;
 
 typedef struct {

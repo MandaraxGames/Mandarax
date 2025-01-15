@@ -6,7 +6,7 @@
 MX_Motor_Handle create_motor() {
   MX_Motor *motor = (MX_Motor*)SDL_malloc(sizeof(MX_Motor));
   SDL_memset(motor, 0, sizeof(MX_Motor)); // sets all values to zero,
-  motor->running = 1; // only running needs a default value not equal to zero
+  motor->running = SDL_TRUE; // only running needs a default value not equal to zero
   return (MX_Motor_Handle)motor;
 }
 
@@ -15,16 +15,15 @@ void destroy_motor(MX_Motor_Handle motor_handle) {
   SDL_free(motor);
 }
 
-void run_game_loop(MX_Hull_Handle hull_handle, void (*update)(Uint64 delta_ms)) {
+void run_game_loop(MX_Hull_Handle hull_handle, void (*update)(float delta_ms)) {
   MX_Hull *hull = (MX_Hull*)hull_handle;
   MX_Motor *motor = (MX_Motor*)hull->motor;
   if (motor->running) {
-    
     motor->current_time = SDL_GetTicks64();
-    Uint64 frame_time = motor->current_time - motor->previous_time;
+    float frame_time = motor->current_time - motor->previous_time;
     motor->previous_time = motor->current_time;
     motor->accumulated_time += frame_time;
-    Uint64 update_count = 0;
+    float update_count = 0;
     
     handle_input(hull_handle);
     
@@ -45,7 +44,7 @@ void run_game_loop(MX_Hull_Handle hull_handle, void (*update)(Uint64 delta_ms)) 
 void end_game_loop(MX_Hull_Handle hull_handle) {
   MX_Hull *hull = (MX_Hull*)hull_handle;
   MX_Motor *motor = (MX_Motor*)hull->motor;
-  motor->running = 0;
+  motor->running = SDL_FALSE;
 }
 
 Uint64 is_running(MX_Hull_Handle hull_handle) {
