@@ -30,7 +30,7 @@ Uint64 is_running(MX_Hull_Handle hull_handle) {
 void run_game_loop(MX_Hull_Handle hull_handle, void (*update)(float delta_ms)) {
   MX_Hull *hull = (MX_Hull*)hull_handle;
   MX_Motor *motor = (MX_Motor*)hull->motor;
-  while (motor->running) {
+  while (is_running(hull_handle)) {
     motor->current_time = SDL_GetTicks64();
     float frame_time = motor->current_time - motor->previous_time;
     motor->previous_time = motor->current_time;
