@@ -15,16 +15,37 @@ void destroy_motor(MX_Motor_Handle motor_handle) {
   SDL_free(motor);
 }
 
+void end_game_loop(MX_Hull_Handle hull_handle) {
+  MX_Hull *hull = (MX_Hull*)hull_handle;
+  MX_Motor *motor = (MX_Motor*)hull->motor;
+  motor->running = SDL_FALSE;
+}
+
+Uint64 is_running(MX_Hull_Handle hull_handle) {
+  MX_Hull *hull = (MX_Hull*)hull_handle;
+  MX_Motor *motor = (MX_Motor*)hull->motor;
+  return motor->running;
+}
+
 void run_game_loop(MX_Hull_Handle hull_handle, void (*update)(float delta_ms)) {
   MX_Hull *hull = (MX_Hull*)hull_handle;
   MX_Motor *motor = (MX_Motor*)hull->motor;
-  if (motor->running) {
+  while (motor->running) {
     motor->current_time = SDL_GetTicks64();
     float frame_time = motor->current_time - motor->previous_time;
     motor->previous_time = motor->current_time;
     motor->accumulated_time += frame_time;
     float update_count = 0;
-    
+    while (SDL_PollEvent(&event)) {
+      switch (event.type) {
+        case SDL_QUIT:
+          end_game_loop(hull_handle);
+          return;
+
+        default:
+          break;
+      }
+    }
     handle_input(hull_handle);
     
     while (motor->accumulated_time >= FIXED_DELTA && update_count < MAX_STEPS_PER_UPDATE) {
@@ -39,16 +60,4 @@ void run_game_loop(MX_Hull_Handle hull_handle, void (*update)(float delta_ms)) {
       motor->accumulated_time = 0;
     }
   }
-}
-
-void end_game_loop(MX_Hull_Handle hull_handle) {
-  MX_Hull *hull = (MX_Hull*)hull_handle;
-  MX_Motor *motor = (MX_Motor*)hull->motor;
-  motor->running = SDL_FALSE;
-}
-
-Uint64 is_running(MX_Hull_Handle hull_handle) {
-  MX_Hull *hull = (MX_Hull*)hull_handle;
-  MX_Motor *motor = (MX_Motor*)hull->motor;
-  return motor->running;
 }
