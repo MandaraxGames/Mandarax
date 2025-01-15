@@ -57,7 +57,7 @@ typedef struct {
   SDL_Renderer* renderer;
   Sint64 mod_count;
   Sint64 max_modifications;
-  void (**render_modifications)(SDL_Renderer*);
+  MX_RenderFunction* render_modifications;
 } MX_Renderer;
 
 typedef struct {
