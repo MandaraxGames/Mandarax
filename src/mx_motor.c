@@ -36,16 +36,18 @@ void run_game_loop(MX_Hull_Handle hull_handle, void (*update)(float delta_ms)) {
     motor->previous_time = motor->current_time;
     motor->accumulated_time += frame_time;
     float update_count = 0;
-    //while (SDL_PollEvent(&event)) {
-    //  switch (event.type) {
-    //    case SDL_QUIT:
-    //      end_game_loop(hull_handle);
-    //      return;
+    
+    SDL_Event event;
+    while (SDL_PollEvent(&event)) {
+      switch (event.type) {
+        case SDL_QUIT:
+          end_game_loop(hull_handle);
+          return;
 
-    //    default:
-    //      break;
-    //  }
-    //}
+        default:
+          break;
+      }
+    }
     handle_input(hull_handle);
     
     while (motor->accumulated_time >= FIXED_DELTA && update_count < MAX_STEPS_PER_UPDATE) {
