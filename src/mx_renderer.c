@@ -1,7 +1,7 @@
 #include "mx_renderer.h"
 #include "mx_general_internal.h"
 
-void *create_renderer(SDL_Renderer *sdl_renderer) {
+MX_Renderer_Handle create_renderer(SDL_Renderer *sdl_renderer) {
   MX_Renderer *renderer = (MX_Renderer*)SDL_malloc(sizeof(MX_Renderer));
   SDL_memset(renderer, 0, sizeof(MX_Renderer));
   renderer->renderer = sdl_renderer;
