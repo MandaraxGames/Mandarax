@@ -29,7 +29,7 @@ void perform_rendering(MX_Hull_Handle hull_handle) {
     SDL_RenderClear(renderer->renderer);
 
     for (int i = 0; i < renderer->mod_count; i++) {
-      renderer->render_modifications[i](hull_handle);
+      renderer->render_modifications[i](renderer->renderer);
     }
 
     SDL_RenderPresent(renderer->renderer);
@@ -39,10 +39,10 @@ void perform_rendering(MX_Hull_Handle hull_handle) {
 void add_render_modification(MX_Hull_Handle hull_handle, MX_RenderFunction mod) {
   MX_Renderer *renderer = (MX_Renderer*)((MX_Hull*)hull_handle)->renderer;
 
-  if (renderer && renderer->mod_count < MAX_MODIFICATIONS) {
+  if (renderer) {
     renderer->render_modifications[renderer->mod_count++] = mod;
     SDL_Log("Added modification number: %d", renderer->mod_count);
   } else {
-    SDL_Log("Max modifications reached, cannot add more.\n");
+    SDL_Log("Renderer does not exist to add modification to.\n");
   }
 }
