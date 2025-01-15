@@ -2,3 +2,5 @@
 /build
 /ogs
 *.pbd
+*.obj
+*.lib
