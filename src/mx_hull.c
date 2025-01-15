@@ -5,6 +5,8 @@
 #include "mx_scene.h"
 #include "mx_general_internal.h"
 
+int _fltused = 0;
+
 MX_Hull_Handle assemble_app(const char* title, Uint64 width, Uint64 height, MX_RenderFunction game_render) {
     
   //TTF_Init();
