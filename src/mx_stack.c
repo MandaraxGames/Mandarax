@@ -1,7 +1,7 @@
 #include "mx_stack.h"
 #include "mx_general_internal.h"
 
-void* create_stack(Uint64 element_size, Uint64 max_elements) {
+MX_Stack_Handle create_stack(Uint64 element_size, Uint64 max_elements) {
     MX_Stack* s = (MX_Stack*)SDL_malloc(sizeof(MX_Stack));
     if (!s) {
         SDL_Log("Failed to allocate memory for MX_Stack.");

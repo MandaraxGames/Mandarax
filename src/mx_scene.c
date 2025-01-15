@@ -1,7 +1,7 @@
 #include "mx_scene.h"
 #include "mx_general_internal.h"
 
-void *create_scene_manager(void) {
+void create_scene_manager(void) {
   //MX_SceneManager *manager = (MX_SceneManager*)SDL_malloc(sizeof(MX_SceneManager));
   //if (!manager) {
   //  SDL_Log("Failed to allocate memory for MX_SceneManager");
