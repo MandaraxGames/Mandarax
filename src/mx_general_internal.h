@@ -7,6 +7,7 @@
 //#include <SDL_ttf.h>
 //#include <SDL_image.h>
 
+// Flag Enums
 typedef enum {
     MX_HULL_REQUIRED     = 0x0001,  // Window + Motor + Renderer (minimum)
     MX_HULL_RENDERER     = 0x0002,  // Additional renderers
@@ -14,14 +15,23 @@ typedef enum {
     MX_HULL_CONTROLS     = 0x0010,  // Input handling
     MX_HULL_NAVIGATION   = 0x0020,  // Scene management
     MX_HULL_UI           = 0x0040,  // User interface
-} MX_HullFlags;
+} MX_Hull_Flags;
 
+typedef enum {
+    MX_COMPONENT_NONE      = 0x0000,
+    MX_COMPONENT_POSITION  = 0x0001,
+    MX_COMPONENT_SPRITE    = 0x0002,
+    MX_COMPONENT_PHYSICS   = 0x0004,
+    MX_COMPONENT_ANIMATION = 0x0008/
+} MX_EntityComponent_Flags;
+
+// State Enums
 typedef enum {
     MX_SCENE_STATE_IDLE,
     MX_SCENE_STATE_TRANSITIONING_IN,
     MX_SCENE_STATE_ACTIVE,
     MX_SCENE_STATE_TRANSITIONING_OUT
-} MX_SceneState;
+} MX_Scene_State;
 
 #ifdef _MSC_VER
     #pragma pack(push, 1)
