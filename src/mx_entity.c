@@ -16,6 +16,13 @@ MX_Entity_Handle createEntity(MX_Manifest_Handle manifest_handle, Uint32 flags) 
         entity->components[1] = malloc(sizeof(MX_Sprite));
     }
     
+    if (flags & MX_COMPONENT_PHYSICS2D) {
+        if (entity->components[0]) == NULL) {
+          entity->components[0] = malloc(sizeof(MX_Position2D));
+        }
+        entity->components[2] = malloc(sizeof(MX_PhysicsBody2D));
+    }
+    
     entity->active_components = flags;
     
     return (MX_Entity_Handle)entity;

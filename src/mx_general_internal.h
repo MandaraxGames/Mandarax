@@ -21,8 +21,9 @@ typedef enum {
     MX_COMPONENT_NONE      = 0x0000,
     MX_COMPONENT_POSITION  = 0x0001,
     MX_COMPONENT_SPRITE    = 0x0002,
-    MX_COMPONENT_PHYSICS   = 0x0004,
-    MX_COMPONENT_ANIMATION = 0x0008/
+    MX_COMPONENT_PHYSICS2D = 0x0004,
+    MX_COMPONENT_PHYSICS3D = 0x0008,
+    MX_COMPONENT_ANIMATION = 0x0016/
 } MX_EntityComponent_Flags;
 
 // State Enums
@@ -72,6 +73,10 @@ typedef struct {
   Uint64 width, height;
   SDL_Rect src_rect;  // Source rectangle for sprite sheets
 } MX_Sprite;
+
+typedef struct {
+  Uint64 width, height;
+} MX_PhysicsBody2D;
 
 typedef struct {
   void* data;
