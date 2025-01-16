@@ -1,18 +1,25 @@
 #ifndef GENERAL_PUBLIC_H
 #define GENERAL_PUBLIC_H
 
+//#include <stddef.h>
 #include <SDL.h>
 #include <SDL_stdinc.h>
 #include <SDL_timer.h>
 //#include <SDL_ttf.h>
 //#include <SDL_image.h>
 
+// Window Default Constants
 #define SCREEN_WIDTH 1024
 #define SCREEN_HEIGHT 576
-
+// Game Loop Default Constants
 #define DESIRED_FPS 60
 #define FIXED_DELTA 1.0 / DESIRED_FPS  // 16.666ms
 #define MAX_STEPS_PER_UPDATE 5        // Prevent spiral of death
+// Memory Pool Default Constants
+#define CACHE_LINE 64
+#define BLOCK_SIZE 256
+#define POOL_SIZE (1024 * 1024)  /* 1MB */
+#define NUM_BLOCKS (POOL_SIZE / BLOCK_SIZE)
 
 typedef struct {
     const char* title;

@@ -23,6 +23,28 @@ typedef enum {
     MX_SCENE_STATE_TRANSITIONING_OUT
 } MX_SceneState;
 
+#ifdef _MSC_VER
+    #pragma pack(push, 1)
+#endif
+
+struct pool_block {
+#ifndef _MSC_VER
+    __attribute__((packed))
+#endif
+    SDL_Bool is_free;
+    Uint32 size;
+    char data[BLOCK_SIZE - sizeof(SDL_Bool) - sizeof(Uint32)];
+};
+
+#ifdef _MSC_VER
+    #pragma pack(pop)
+#endif
+
+struct pool_manager {
+    struct pool_block blocks[NUM_BLOCKS];
+    Uint32 free_blocks;
+};
+
 typedef struct {
   void* data;
   Uint64 element_size;
