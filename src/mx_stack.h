@@ -1,5 +1,5 @@
-#ifndef STACK_H
-#define STACK_H
+#ifndef MX_STACK_H
+#define MX_STACK_H
 
 #include "mx_general_public.h"
 
@@ -9,4 +9,4 @@ void* peek_stack(MX_Stack_Handle s);
 Uint64 push_stack(MX_Stack_Handle s, void* element);
 void* pop_stack(MX_Stack_Handle s);
 
-#endif // STACK_H
+#endif // MX_STACK_H

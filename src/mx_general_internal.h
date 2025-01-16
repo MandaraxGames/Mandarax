@@ -1,5 +1,5 @@
-#ifndef GENERAL_INTERNAL_H
-#define GENERAL_INTERNAL_H
+#ifndef MX_GENERAL_INTERNAL_H
+#define MX_GENERAL_INTERNAL_H
 
 #include <SDL.h>
 #include <SDL_stdinc.h>
@@ -53,7 +53,7 @@ typedef struct {
 } MX_Stack;
 
 typedef struct MX_State {
-  MX_PushDownAutomata_Handle parent; // Points to parent state/manager
+  MX_PushdownAutomata_Handle parent; // Points to parent state/manager
   MX_Stack_Handle states;            // Stack of sub-states
   void* context;               // State-specific data
 } MX_State;
@@ -61,7 +61,7 @@ typedef struct MX_State {
 typedef struct {
   MX_Stack_Handle states;     // Root level state stack
   void* context;        // Global context data
-} MX_PushDownAutomata;
+} MX_PushdownAutomata;
 
 typedef struct {
   Uint64 width;
@@ -128,4 +128,4 @@ typedef struct {
   // void* ui;             // MX_HULL_UI
 } MX_Hull;
 
-#endif // GENERAL_INTERNAL_H
+#endif // MX_GENERAL_INTERNAL_H

@@ -1,5 +1,5 @@
-#ifndef MOTOR_H
-#define MOTOR_H
+#ifndef MX_MOTOR_H
+#define MX_MOTOR_H
 
 #include "mx_general_public.h"
 
@@ -11,5 +11,5 @@ void end_game_loop(MX_Hull_Handle hull_pointer);
 Uint64 is_running(MX_Hull_Handle hull_pointer);
 void reset_game(MX_Hull_Handle hull_pointer);
 
-#endif // MOTOR_H
+#endif // MX_MOTOR_H
 

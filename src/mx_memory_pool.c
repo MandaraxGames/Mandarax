@@ -35,7 +35,6 @@ void* pool_alloc(struct pool_manager* pool, size_t size)
     return NULL;
 }
 
-/* Free memory in pool */
 void pool_free(struct pool_manager* pool, void* ptr)
 {
     Uint64 i;

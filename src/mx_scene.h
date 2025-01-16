@@ -1,5 +1,5 @@
-#ifndef SCENE_H
-#define SCENE_H
+#ifndef MX_SCENE_H
+#define MX_SCENE_H
 
 #include "mx_general_public.h"
 
@@ -9,4 +9,4 @@ void transition_to_scene(void *hull_pointer, Uint64 new_scene);
 void update_scene(void *hull_pointer);
 void render_scene(void *hull_pointer);
 
-#endif // SCENE_H
+#endif // MX_SCENE_H

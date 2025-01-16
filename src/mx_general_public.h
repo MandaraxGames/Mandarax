@@ -1,5 +1,5 @@
-#ifndef GENERAL_PUBLIC_H
-#define GENERAL_PUBLIC_H
+#ifndef MX_GENERAL_PUBLIC_H
+#define MX_GENERAL_PUBLIC_H
 
 //#include <stddef.h>
 #include <SDL.h>
@@ -32,10 +32,10 @@ typedef struct {
 
 typedef struct MX_Stack* MX_Stack_Handle;
 typedef struct MX_State* MX_State_Handle;
-typedef struct MX_PushDownAutomata* MX_PushDownAutomata_Handle;
+typedef struct MX_PushdownAutomata* MX_PushdownAutomata_Handle;
 typedef struct MX_Renderer* MX_Renderer_Handle;
 typedef void (*MX_RenderFunction)(SDL_Renderer*);
 typedef struct MX_Motor* MX_Motor_Handle;
 typedef struct MX_Hull* MX_Hull_Handle;
 
-#endif // GENERAL_PUBLIC_H
+#endif // MX_GENERAL_PUBLIC_H

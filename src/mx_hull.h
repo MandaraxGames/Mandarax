@@ -1,5 +1,5 @@
-#ifndef HULL_H
-#define HULL_H
+#ifndef MX_HULL_H
+#define MX_HULL_H
 
 #include "mx_general_public.h"
 
@@ -7,4 +7,4 @@ MX_Hull_Handle assemble_app(const char* title, Uint64 width, Uint64 height, MX_R
 void disassemble_app(MX_Hull_Handle hull_handle);
 void render_grid(SDL_Renderer* renderer);
 
-#endif // HULL_H
+#endif // MX_HULL_H

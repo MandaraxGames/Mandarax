@@ -1,5 +1,5 @@
-#ifndef CACHED_TEXT_H
-#define CACHED_TEXT_H
+#ifndef MX_CACHED_TEXT_H
+#define MX_CACHED_TEXT_H
 
 #include "mx_general_public.h"
 
@@ -12,4 +12,4 @@ Uint64 has_remaining_text(void* cached_text_pointer);
 void reset_cached_text(void* cached_text_pointer, const char* new_text);
 Uint64 process_typed_character(void* cached_text_pointer, char typed);
 
-#endif // CACHED_TEXT_H
+#endif // MX_CACHED_TEXT_H
