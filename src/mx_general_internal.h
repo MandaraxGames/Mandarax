@@ -27,23 +27,41 @@ typedef enum {
     #pragma pack(push, 1)
 #endif
 
-struct pool_block {
+typedef struct {
 #ifndef _MSC_VER
     __attribute__((packed))
 #endif
     SDL_Bool is_free;
     Uint32 size;
     char data[BLOCK_SIZE - sizeof(SDL_Bool) - sizeof(Uint32)];
-};
+} MX_PoolBlock;
 
 #ifdef _MSC_VER
     #pragma pack(pop)
 #endif
 
-struct pool_manager {
+typedef struct {
     struct pool_block blocks[NUM_BLOCKS];
     Uint32 free_blocks;
-};
+} MX_PoolManager;
+
+typedef struct {
+  Uint64 id;
+  void* components[16];
+  Uint64 active_components;
+} MX_Entity;
+
+typedef struct {
+  float x, y;
+  float rotation;
+  float scale_x, scale_y;
+} MX_Position2D;
+
+typedef struct {
+  SDL_Texture* texture;
+  Uint64 width, height;
+  SDL_Rect src_rect;  // Source rectangle for sprite sheets
+} MX_Sprite;
 
 typedef struct {
   void* data;

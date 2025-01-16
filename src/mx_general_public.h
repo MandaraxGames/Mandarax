@@ -30,12 +30,22 @@ typedef struct {
     //Uint8 manifest_count;  // Number of entity systems
 } MX_Config;
 
+typedef struct MX_PoolBlock* MX_PoolBlock_Handle;
+typedef struct MX_PoolManager* MX_PoolManager_Handle;
+typedef struct MX_Entity* MX_Entity_Handle;
+typedef struct MX_Position2D* MX_Position2D_Handle;
+typedef struct MX_Sprite* MX_Sprite_Handle;
 typedef struct MX_Stack* MX_Stack_Handle;
 typedef struct MX_State* MX_State_Handle;
 typedef struct MX_PushdownAutomata* MX_PushdownAutomata_Handle;
+typedef struct MX_CachedText* MX_CachedText_Handle;
+typedef struct MX_Controls* MX_Controls_Handle;
 typedef struct MX_Renderer* MX_Renderer_Handle;
 typedef void (*MX_RenderFunction)(SDL_Renderer*);
+typedef struct MX_Manifest* MX_Manifest_Handle;
 typedef struct MX_Motor* MX_Motor_Handle;
+typedef struct MX_Scene* MX_Scene_Handle;
+typedef struct MX_SceneManager* MX_SceneManager_Handle;
 typedef struct MX_Hull* MX_Hull_Handle;
 
 #endif // MX_GENERAL_PUBLIC_H
