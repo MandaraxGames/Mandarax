@@ -5,5 +5,6 @@
 #include "mx_hull.h"
 #include "mx_motor.h"
 #include "mx_renderer.h"
+#include "mx_entity.h"
 
 #endif // MANDARAX_H

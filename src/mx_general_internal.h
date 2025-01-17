@@ -9,73 +9,92 @@
 
 // Flag Enums
 typedef enum {
-    MX_HULL_REQUIRED     = 0x0001,  // Window + Motor + Renderer (minimum)
-    MX_HULL_RENDERER     = 0x0002,  // Additional renderers
-    MX_HULL_MANIFEST     = 0x0008,  // Entity systems
-    MX_HULL_CONTROLS     = 0x0010,  // Input handling
-    MX_HULL_NAVIGATION   = 0x0020,  // Scene management
-    MX_HULL_UI           = 0x0040,  // User interface
+  MX_HULL_REQUIRED     = 0x0001,  // Window + Motor + Renderer (minimum)
+  MX_HULL_RENDERER     = 0x0002,  // Additional renderers
+  MX_HULL_MANIFEST     = 0x0008,  // Entity systems
+  MX_HULL_CONTROLS     = 0x0010,  // Input handling
+  MX_HULL_NAVIGATION   = 0x0020,  // Scene management
+  MX_HULL_UI           = 0x0040,  // User interface
 } MX_Hull_Flags;
 
 typedef enum {
-    MX_COMPONENT_NONE      = 0x0000,
-    MX_COMPONENT_POSITION  = 0x0001,
-    MX_COMPONENT_SPRITE    = 0x0002,
-    MX_COMPONENT_PHYSICS2D = 0x0004,
-    MX_COMPONENT_PHYSICS3D = 0x0008,
-    MX_COMPONENT_ANIMATION = 0x0016/
+  MX_COMPONENT_NONE      = 0x0000,
+  MX_COMPONENT_POSITION  = 0x0001,
+  MX_COMPONENT_SPRITE    = 0x0002,
+  MX_COMPONENT_PHYSICS2D = 0x0004,
+  MX_COMPONENT_PHYSICS3D = 0x0008,
+  MX_COMPONENT_ANIMATION = 0x0016/
 } MX_EntityComponent_Flags;
 
 // State Enums
 typedef enum {
-    MX_SCENE_STATE_IDLE,
-    MX_SCENE_STATE_TRANSITIONING_IN,
-    MX_SCENE_STATE_ACTIVE,
-    MX_SCENE_STATE_TRANSITIONING_OUT
+  MX_SCENE_STATE_IDLE,
+  MX_SCENE_STATE_TRANSITIONING_IN,
+  MX_SCENE_STATE_ACTIVE,
+  MX_SCENE_STATE_TRANSITIONING_OUT
 } MX_Scene_State;
 
 #ifdef _MSC_VER
-    #pragma pack(push, 1)
+  #pragma pack(push, 1)
 #endif
 
 typedef struct {
 #ifndef _MSC_VER
-    __attribute__((packed))
+  __attribute__((packed))
 #endif
-    SDL_Bool is_free;
-    Uint32 size;
-    char data[BLOCK_SIZE - sizeof(SDL_Bool) - sizeof(Uint32)];
+  SDL_Bool is_free;
+  Uint32 size;
+  char data[BLOCK_SIZE - sizeof(SDL_Bool) - sizeof(Uint32)];
 } MX_PoolBlock;
 
 #ifdef _MSC_VER
-    #pragma pack(pop)
+  #pragma pack(pop)
 #endif
 
 typedef struct {
-    struct pool_block blocks[NUM_BLOCKS];
-    Uint32 free_blocks;
+  Uint32 free_blocks;
+  struct pool_block blocks[NUM_BLOCKS];
 } MX_PoolManager;
 
 typedef struct {
+  char name[BLOCK_SIZE - sizeof(Uint64)*2 - sizeof(uint8_t)*2];
   Uint64 id;
-  void* components[16];
   Uint64 active_components;
+  uint8_t components[16];
+  void (*update)(MX_Entity_Handle entity_handle);
 } MX_Entity;
 
 typedef struct {
-  float x, y;
-  float rotation;
-  float scale_x, scale_y;
-} MX_Position2D;
+  Uint64 x, y;
+} MX_Point2D;
 
 typedef struct {
+  float x, y;
+} MX_FPoint2D;
+
+typedef struct {
+  Uint64 x, y, width, height;
+} MX_Rect;
+
+typedef struct {
+  float x, y, width, height;
+} MX_FRect;
+
+typedef struct {
+  MX_Rect src_rect;
+  MX_Rect dest_rect;
+  Uint64 scale_x, scale_y;
+  float rotation;
   SDL_Texture* texture;
-  Uint64 width, height;
-  SDL_Rect src_rect;  // Source rectangle for sprite sheets
+  void (*render)(MX_Sprite_Handle sprite_handle, SDL_Renderer* renderer);
 } MX_Sprite;
 
 typedef struct {
-  Uint64 width, height;
+  MX_FRect body;
+  float scale_x, scale_y;
+  float rotation;
+  float velocity;
+  float acceleration;
 } MX_PhysicsBody2D;
 
 typedef struct {
@@ -99,20 +118,20 @@ typedef struct {
 typedef struct {
   Uint64 width;
   Uint64 height;
-  SDL_Texture* texture;
   MX_Stack_Handle text_stack;
+  SDL_Texture* texture;
 } MX_CachedText;
 
 typedef struct {
-  SDL_Event event;
   MX_Stack_Handle input_stack;
+  SDL_Event event;
 } MX_Controls;
 
 typedef struct {
-  SDL_Renderer* renderer;
-  Sint64 mod_count;
-  Sint64 max_modifications;
   MX_RenderFunction* render_modifications;
+  Uint64 mod_count;
+  Uint64 max_modifications;
+  SDL_Renderer* renderer;
 } MX_Renderer;
 
 typedef struct {

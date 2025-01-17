@@ -26,15 +26,15 @@ typedef struct {
     Uint32 width;
     Uint32 height;
     Uint32 flags;          // Configuration flags
-    //Uint8 renderer_count;  // Number of additional renderers
-    //Uint8 manifest_count;  // Number of entity systems
 } MX_Config;
 
-typedef struct MX_PoolBlock* MX_PoolBlock_Handle;
-typedef struct MX_PoolManager* MX_PoolManager_Handle;
 typedef struct MX_Entity* MX_Entity_Handle;
-typedef struct MX_Position2D* MX_Position2D_Handle;
+typedef struct MX_Point2D* MX_Point2D_Handle;
+typedef struct MX_FPoint2D* MX_FPoint2D_Handle;
+typedef struct MX_Rect* MX_Rect_Handle;
+typedef struct MX_FRect* MX_FRect_Handle;
 typedef struct MX_Sprite* MX_Sprite_Handle;
+typedef struct MX_PhysicsBody2D* MX_PhysicsBody2D_Handle;
 typedef struct MX_Stack* MX_Stack_Handle;
 typedef struct MX_State* MX_State_Handle;
 typedef struct MX_PushdownAutomata* MX_PushdownAutomata_Handle;

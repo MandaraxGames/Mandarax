@@ -3,8 +3,8 @@
 
 #include "mx_general_public.h"
 
-struct pool_manager* create_pool(void);
-void* pool_alloc(struct pool_manager* pool, size_t size);
-void pool_free(struct pool_manager* pool, void* ptr);
+struct MX_PoolManager* create_pool(void);
+void* pool_alloc(MX_PoolManager* pool, size_t size);
+void pool_free(MX_PoolManager* pool, void* ptr);
 
 #endif // MX_MEMORY_POOL_H
