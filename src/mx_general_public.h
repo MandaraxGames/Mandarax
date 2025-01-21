@@ -73,7 +73,7 @@ typedef struct {
   Uint64 scale_x, scale_y;
   float rotation;
   SDL_Texture* texture;
-  void (*render)(MX_Sprite_Handle sprite_handle, SDL_Renderer* renderer);
+  void (*render)(MX_Sprite_Handle, SDL_Renderer*);
 } MX_Sprite;
 
 typedef struct {
@@ -97,8 +97,8 @@ typedef struct MX_PushdownAutomata* MX_PushdownAutomata_Handle;
 typedef struct MX_CachedText* MX_CachedText_Handle;
 typedef struct MX_Controls* MX_Controls_Handle;
 typedef struct MX_Renderer* MX_Renderer_Handle;
-typedef void (*MX_RenderFunction)(SDL_Renderer* context);
-typedef void (*MX_UpdateFunction)(float delta_ms);
+typedef void (*MX_RenderFunction)(SDL_Renderer*);
+typedef void (*MX_UpdateFunction)(float);
 typedef struct MX_Manifest* MX_Manifest_Handle;
 typedef struct MX_Motor* MX_Motor_Handle;
 typedef struct MX_Scene* MX_Scene_Handle;
