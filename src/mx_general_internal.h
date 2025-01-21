@@ -7,25 +7,6 @@
 //#include <SDL_ttf.h>
 //#include <SDL_image.h>
 
-// Flag Enums
-typedef enum {
-  MX_HULL_REQUIRED     = 0x0001,  // Window + Motor + Renderer (minimum)
-  MX_HULL_RENDERER     = 0x0002,  // Additional renderers
-  MX_HULL_MANIFEST     = 0x0008,  // Entity systems
-  MX_HULL_CONTROLS     = 0x0010,  // Input handling
-  MX_HULL_NAVIGATION   = 0x0020,  // Scene management
-  MX_HULL_UI           = 0x0040,  // User interface
-} MX_Hull_Flags;
-
-typedef enum {
-  MX_COMPONENT_NONE      = 0x0000,
-  MX_COMPONENT_POSITION  = 0x0001,
-  MX_COMPONENT_SPRITE    = 0x0002,
-  MX_COMPONENT_PHYSICS2D = 0x0004,
-  MX_COMPONENT_PHYSICS3D = 0x0008,
-  MX_COMPONENT_ANIMATION = 0x0016/
-} MX_EntityComponent_Flags;
-
 // State Enums
 typedef enum {
   MX_SCENE_STATE_IDLE,
@@ -57,45 +38,16 @@ typedef struct {
 } MX_PoolManager;
 
 typedef struct {
-  char name[BLOCK_SIZE - sizeof(Uint64)*2 - sizeof(uint8_t)*2];
   Uint64 id;
-  Uint64 active_components;
-  uint8_t components[16];
+  char name[32];
+  Uint32 type;
+  Uint32 mask;            // Bit mask of which components exist
+  Uint8 comp_to_index[MAX_COMPONENTS];  // Fixed lookup array - O(1) access
+  Uint8 capacity;             // Allocated size of components array
+  Uint8 count;                // Number of components currently in use
   void (*update)(MX_Entity_Handle entity_handle);
+  void** components;         // Dynamic array of components
 } MX_Entity;
-
-typedef struct {
-  Uint64 x, y;
-} MX_Point2D;
-
-typedef struct {
-  float x, y;
-} MX_FPoint2D;
-
-typedef struct {
-  Uint64 x, y, width, height;
-} MX_Rect;
-
-typedef struct {
-  float x, y, width, height;
-} MX_FRect;
-
-typedef struct {
-  MX_Rect src_rect;
-  MX_Rect dest_rect;
-  Uint64 scale_x, scale_y;
-  float rotation;
-  SDL_Texture* texture;
-  void (*render)(MX_Sprite_Handle sprite_handle, SDL_Renderer* renderer);
-} MX_Sprite;
-
-typedef struct {
-  MX_FRect body;
-  float scale_x, scale_y;
-  float rotation;
-  float velocity;
-  float acceleration;
-} MX_PhysicsBody2D;
 
 typedef struct {
   void* data;

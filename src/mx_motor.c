@@ -50,7 +50,7 @@ void run_game_loop(MX_Hull_Handle hull_handle, void (*update)(float delta_ms)) {
     }
     handle_input(hull_handle);
     
-    while (motor->accumulated_time >= FIXED_DELTA && update_count < MAX_STEPS_PER_UPDATE) {
+    while (motor->accumulated_time >= FIXED_DELTA && update_count < MAX_STEPS_PER_UPDATE) { // Prevent spiral of death
       update(FIXED_DELTA);   // Game logic at fixed time step
       perform_rendering(hull_handle);
       motor->accumulated_time -= FIXED_DELTA;
