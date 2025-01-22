@@ -47,10 +47,10 @@ void init_entity(MX_Entity_Handle entity_handle, int argc, void* argv[]) {
   SDL_Log("%u, %u, %u, %u", argv[1], argv[2], argv[3], argv[4]);
   pos->x = (Uint64)argv[1];
   pos->y = (Uint64)argv[2];
-  pb2d->body.x = (float)argv[1];
-  pb2d->body.y = (float)argv[2];
-  pb2d->body.width = (float)argv[3];
-  pb2d->body.height = (float)argv[4];
+  pb2d->body.x = (float*)argv[1];
+  pb2d->body.y = (float*)argv[2];
+  pb2d->body.width = (float*)argv[3];
+  pb2d->body.height = (float*)argv[4];
 }
 
 void setEntityUpdate(MX_Entity_Handle entity_handle, void (*update)(MX_Entity_Handle, float)) {
