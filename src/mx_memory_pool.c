@@ -30,9 +30,8 @@ void* pool_alloc(void* pool_ptr, size_t size) {
   return NULL;
 }
 
-void pool_free(void* pool_ptr, void* p_ptr) {
+void pool_free(void* pool_ptr, void* ptr) {
   MX_PoolManager* pool = (MX_PoolManager*)pool_ptr;
-  MX_Pool* ptr = (MX_Pool*)p_ptr;
   if (!pool || !ptr) return;
   
   Uint64 i;
