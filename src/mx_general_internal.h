@@ -45,7 +45,7 @@ typedef struct {
   Uint8 comp_to_index[MAX_ENTITY_COMPONENTS];  // Fixed lookup array - O(1) access
   Uint8 capacity;             // Allocated size of components array
   Uint8 count;                // Number of components currently in use
-  void (*update)(MX_Entity_Handle entity_handle, float delta_ms;
+  void (*update)(MX_Entity_Handle entity_handle, float delta_ms);
   void** components;         // Dynamic array of components
 } MX_Entity;
 
