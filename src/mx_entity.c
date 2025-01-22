@@ -37,16 +37,16 @@ void init_entity(MX_Entity_Handle entity_handle, int argc, void* argv[]) {
   MX_Entity* entity = (MX_Entity*)entity_handle;
   MX_Point2D* pos = get_position(entity_handle);
   MX_PhysicsBody2D* pb2d = get_physics2d(entity_handle);
-  entity->name = (char*)argv[0];
+  SDL_strlcpy(entity->name, (char*)argv[0], 32);
   pos->x = (Uint64)argv[1];
   pos->y = (Uint64)argv[2];
   pb2d->body.x = (Uint64)argv[1];
   pb2d->body.y = (Uint64)argv[2];
-  pb2d->body->width = (Uint64)argv[3];
-  pb2d->body->height = (Uint64)argv[4];
+  pb2d->body.width = (Uint64)argv[3];
+  pb2d->body.height = (Uint64)argv[4];
 }
 
-void setEntityUpdate(MX_Entity_Handle entity_handle, void (*update)(float delta_ms)) {
+void setEntityUpdate(MX_Entity_Handle entity_handle, void (*update)(MX_Entity_Handle, float)) {
   MX_Entity* entity = (MX_Entity*)entity_handle;
   entity->update = update;
 }
