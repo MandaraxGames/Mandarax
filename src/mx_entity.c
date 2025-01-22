@@ -60,11 +60,11 @@ void ensure_capacity(MX_Entity_Handle entity_handle, int needed) {
   MX_Entity* entity = (MX_Entity*)entity_handle;
   if (entity->components == NULL) {
     entity->capacity = needed*2;
-    entity->components = malloc(sizeof(void*) * entity->capacity);
+    entity->components = SDL_malloc(sizeof(void*) * entity->capacity);
   }
   if (entity->capacity >= needed) return;
   while (entity->capacity < needed) entity->capacity *= 2;
-  entity->components = realloc(entity->components, sizeof(void*) * entity->capacity);
+  entity->components = SDL_realloc(entity->components, sizeof(void*) * entity->capacity);
 }
 
 void add_component(MX_Entity_Handle entity_handle, uint32_t type, void* component) {
@@ -112,7 +112,7 @@ void remove_component(MX_Entity_Handle entity_handle, uint32_t type) {
 void destroy_entity(MX_Entity_Handle entity_handle) {
   MX_Entity* entity = (MX_Entity*)entity_handle;
   for(int i = 0; i < entity->count; i++) {
-    free(entity->components[i]);
+    SDL_free(entity->components[i]);
   }
   SDL_free(entity->components);
   SDL_free(entity);
