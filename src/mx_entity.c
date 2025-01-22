@@ -36,9 +36,11 @@ MX_Entity_Handle createEntity(Uint64 initial_capacity, Uint32 flags) {
 void init_entity(MX_Entity_Handle entity_handle, int argc, void* argv[]) {
   MX_Entity* entity = (MX_Entity*)entity_handle;
   MX_Point2D* pos = get_position(entity_handle);
+  if (!pos) SDL_Log("can't find point2d component");
   MX_PhysicsBody2D* pb2d = get_physics2d(entity_handle);
+  if (!pb2d) SDL_Log("can't find physics2d component");
   //SDL_strlcpy(entity->name, (char*)argv[0], 32);
-  SDL_Log("%u, %u, %u, u%", argv[1], argv[2], argv[3], argv[4]);
+  SDL_Log("%u, %u, %u, %u", argv[1], argv[2], argv[3], argv[4]);
   pos->x = (Uint64)argv[1];
   pos->y = (Uint64)argv[2];
   pb2d->body.x = (Uint64)argv[1];
