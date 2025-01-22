@@ -23,7 +23,26 @@
 // Default  Component Constants
 #define MAX_ENTITY_COMPONENTS 32
 
-
+typedef struct MX_Entity* MX_Entity_Handle;
+typedef struct MX_Point2D* MX_Point2D_Handle;
+typedef struct MX_FPoint2D* MX_FPoint2D_Handle;
+typedef struct MX_Rect* MX_Rect_Handle;
+typedef struct MX_FRect* MX_FRect_Handle;
+typedef struct MX_Sprite* MX_Sprite_Handle;
+typedef struct MX_PhysicsBody2D* MX_PhysicsBody2D_Handle;
+typedef struct MX_Stack* MX_Stack_Handle;
+typedef struct MX_State* MX_State_Handle;
+typedef struct MX_PushdownAutomata* MX_PushdownAutomata_Handle;
+typedef struct MX_CachedText* MX_CachedText_Handle;
+typedef struct MX_Controls* MX_Controls_Handle;
+typedef struct MX_Renderer* MX_Renderer_Handle;
+typedef void (*MX_RenderFunction)(SDL_Renderer*);
+typedef void (*MX_UpdateFunction)(float);
+typedef struct MX_Manifest* MX_Manifest_Handle;
+typedef struct MX_Motor* MX_Motor_Handle;
+typedef struct MX_Scene* MX_Scene_Handle;
+typedef struct MX_SceneManager* MX_SceneManager_Handle;
+typedef struct MX_Hull* MX_Hull_Handle;
 
 // Flag Enums
 typedef enum {
@@ -83,26 +102,5 @@ typedef struct {
   float velocity;
   float acceleration;
 } MX_PhysicsBody2D;
-
-typedef struct MX_Entity* MX_Entity_Handle;
-typedef struct MX_Point2D* MX_Point2D_Handle;
-typedef struct MX_FPoint2D* MX_FPoint2D_Handle;
-typedef struct MX_Rect* MX_Rect_Handle;
-typedef struct MX_FRect* MX_FRect_Handle;
-typedef struct MX_Sprite* MX_Sprite_Handle;
-typedef struct MX_PhysicsBody2D* MX_PhysicsBody2D_Handle;
-typedef struct MX_Stack* MX_Stack_Handle;
-typedef struct MX_State* MX_State_Handle;
-typedef struct MX_PushdownAutomata* MX_PushdownAutomata_Handle;
-typedef struct MX_CachedText* MX_CachedText_Handle;
-typedef struct MX_Controls* MX_Controls_Handle;
-typedef struct MX_Renderer* MX_Renderer_Handle;
-typedef void (*MX_RenderFunction)(SDL_Renderer*);
-typedef void (*MX_UpdateFunction)(float);
-typedef struct MX_Manifest* MX_Manifest_Handle;
-typedef struct MX_Motor* MX_Motor_Handle;
-typedef struct MX_Scene* MX_Scene_Handle;
-typedef struct MX_SceneManager* MX_SceneManager_Handle;
-typedef struct MX_Hull* MX_Hull_Handle;
 
 #endif // MX_GENERAL_PUBLIC_H
