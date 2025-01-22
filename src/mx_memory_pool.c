@@ -1,7 +1,7 @@
 #include "mx_memory_pool.h"
 #include "mx_general_internal.h"
 
-MX_PoolManager create_pool(void) {
+void* create_pool(void) {
   MX_PoolManager* pool = (MX_PoolManager*)malloc(sizeof(MX_PoolManager));
   if (!pool) return NULL;
   
@@ -11,10 +11,10 @@ MX_PoolManager create_pool(void) {
     pool->blocks[i].is_free = TRUE;
     pool->blocks[i].size = 0;
   }
-  return pool;
+  return (void*)pool;
 }
 
-void* pool_alloc(MX_PoolManager* pool, size_t size) {
+void* pool_alloc(void* pool, size_t size) {
   if (!pool || size > BLOCK_SIZE) return NULL;
   
   Uint64 i;
@@ -23,13 +23,13 @@ void* pool_alloc(MX_PoolManager* pool, size_t size) {
       pool->blocks[i].is_free = FALSE;
       pool->blocks[i].size = size;
       pool->free_blocks--;
-      return pool->blocks[i].data;
+      return (void*)pool->blocks[i].data;
     }
   }
   return NULL;
 }
 
-void pool_free(MX_PoolManager* pool, void* ptr) {
+void pool_free(void* pool, void* ptr) {
   if (!pool || !ptr) return;
   
   Uint64 i;
