@@ -73,7 +73,7 @@ typedef struct {
   Uint64 scale_x, scale_y;
   float rotation;
   SDL_Texture* texture;
-  void (*render)(MX_Sprite_Handle, SDL_Renderer*);
+  void (*render)(MX_Sprite_Handle, struct SDL_Renderer*);
 } MX_Sprite;
 
 typedef struct {

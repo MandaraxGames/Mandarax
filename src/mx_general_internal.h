@@ -23,9 +23,9 @@ typedef struct {
 #ifndef _MSC_VER
   __attribute__((packed))
 #endif
-  SDL_Bool is_free;
+  SDL_bool is_free;
   Uint32 size;
-  char data[BLOCK_SIZE - sizeof(SDL_Bool) - sizeof(Uint32)];
+  char data[BLOCK_SIZE - sizeof(SDL_bool) - sizeof(Uint32)];
 } MX_PoolBlock;
 
 #ifdef _MSC_VER
@@ -50,10 +50,10 @@ typedef struct {
 } MX_Entity;
 
 typedef struct {
-  void* data;
   Uint64 element_size;
   Uint64 max_elements;
   Uint64 top;
+  void* data;
 } MX_Stack;
 
 typedef struct MX_State {
