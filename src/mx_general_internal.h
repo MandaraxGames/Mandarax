@@ -13,7 +13,7 @@ typedef enum {
   MX_SCENE_STATE_TRANSITIONING_IN,
   MX_SCENE_STATE_ACTIVE,
   MX_SCENE_STATE_TRANSITIONING_OUT
-} MX_Scene_State;
+} MX_SceneState;
 
 #ifdef _MSC_VER
   #pragma pack(push, 1)
@@ -34,7 +34,7 @@ typedef struct {
 
 typedef struct {
   Uint32 free_blocks;
-  struct pool_block blocks[NUM_BLOCKS];
+  MX_PoolBlock blocks[NUM_BLOCKS];
 } MX_PoolManager;
 
 typedef struct {
@@ -42,7 +42,7 @@ typedef struct {
   char name[32];
   Uint32 type;
   Uint32 mask;            // Bit mask of which components exist
-  Uint8 comp_to_index[MAX_COMPONENTS];  // Fixed lookup array - O(1) access
+  Uint8 comp_to_index[MAX_ENTITY_COMPONENTS];  // Fixed lookup array - O(1) access
   Uint8 capacity;             // Allocated size of components array
   Uint8 count;                // Number of components currently in use
   void (*update)(MX_Entity_Handle entity_handle);
