@@ -45,7 +45,7 @@ typedef struct {
   Uint8 comp_to_index[MAX_ENTITY_COMPONENTS];  // Fixed lookup array - O(1) access
   Uint8 capacity;             // Allocated size of components array
   Uint8 count;                // Number of components currently in use
-  void (*update)(MX_Entity_Handle entity_handle);
+  void (*update)(MX_Entity_Handle entity_handle, float delta_ms;
   void** components;         // Dynamic array of components
 } MX_Entity;
 
@@ -80,18 +80,18 @@ typedef struct {
 } MX_Controls;
 
 typedef struct {
-  MX_RenderFunction* render_modifications;
   Uint64 mod_count;
   Uint64 max_modifications;
   SDL_Renderer* renderer;
+  MX_RenderFunction* render_modifications;
 } MX_Renderer;
 
 typedef struct {
   Uint64 entity_count;
   Uint64 max_entities;  // User-defined max
-  void** entities;      // Dynamic array of entities
   void (*update)(void* manifest);
   void (*render)(void* manifest, SDL_Renderer* renderer);
+  void** entities;      // Dynamic array of entities
 } MX_Manifest;
 
 typedef struct {

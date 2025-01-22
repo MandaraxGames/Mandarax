@@ -16,6 +16,6 @@ void destroy_entity(MX_Entity_Handle entity_handle);
 // Component Functions
 MX_Point2D* get_position(MX_Entity_Handle entity);
 MX_Sprite* get_sprite(MX_Entity_Handle entity);
-MX_Physics2D* get_physics2d(MX_Entity_Handle entity);
+MX_PhysicsBody2D* get_physics2d(MX_Entity_Handle entity);
 
 #endif // MX_ENTITY_H
