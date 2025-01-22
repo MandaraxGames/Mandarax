@@ -11,18 +11,21 @@ MX_Entity_Handle createEntity(Uint64 initial_capacity, Uint32 flags) {
   SDL_memset(entity->components, 0, sizeof(entity->components));
   
   if (flags & MX_COMPONENT_POSITION) {
+    SDL_Log("adding position is a component");
     MX_Point2D* pos = SDL_malloc(sizeof(MX_Point2D));
     SDL_memset(pos, 0, sizeof(MX_Point2D));
     add_component((MX_Entity_Handle)entity, MX_COMPONENT_POSITION, (void*)pos);
   }
   
   if (flags & MX_COMPONENT_SPRITE) {
+    SDL_Log("adding sprite is a component");
     MX_Sprite* sprite = SDL_malloc(sizeof(MX_Sprite));
     SDL_memset(sprite, 0, sizeof(MX_Sprite));
     add_component((MX_Entity_Handle)entity, MX_COMPONENT_SPRITE, (void*)sprite);
   }
   
   if (flags & MX_COMPONENT_PHYSICS2D) {
+    SDL_Log("adding physics body 2D is a component");
     MX_PhysicsBody2D* bod = SDL_malloc(sizeof(MX_PhysicsBody2D));
     SDL_memset(bod, 0, sizeof(MX_PhysicsBody2D));
     add_component((MX_Entity_Handle)entity, MX_COMPONENT_PHYSICS2D, (void*)bod);
@@ -44,10 +47,10 @@ void init_entity(MX_Entity_Handle entity_handle, int argc, void* argv[]) {
   SDL_Log("%u, %u, %u, %u", argv[1], argv[2], argv[3], argv[4]);
   pos->x = (Uint64)argv[1];
   pos->y = (Uint64)argv[2];
-  pb2d->body.x = (Uint64)argv[1];
-  pb2d->body.y = (Uint64)argv[2];
-  pb2d->body.width = (Uint64)argv[3];
-  pb2d->body.height = (Uint64)argv[4];
+  pb2d->body.x = (float)argv[1];
+  pb2d->body.y = (float)argv[2];
+  pb2d->body.width = (float)argv[3];
+  pb2d->body.height = (float)argv[4];
 }
 
 void setEntityUpdate(MX_Entity_Handle entity_handle, void (*update)(MX_Entity_Handle, float)) {
