@@ -4,7 +4,7 @@
 #include "mx_general_public.h"
 
 MX_Entity_Handle createEntity(Uint64 initial_capacity, Uint32 flags);
-void init_entity(MX_Entity_Handle entity, char* name, Uint32 name_length);
+void init_entity(MX_Entity_Handle entity, const char* name);
 void setEntityUpdate(MX_Entity_Handle entity_handle, void (*update)(MX_Entity_Handle entity_handle, float delta_ms));
 void setEntityRender(MX_Entity_Handle entity_handle, MX_RenderFunction);
 void ensure_capacity(MX_Entity_Handle entity_handle, int needed);
