@@ -15,6 +15,7 @@ MX_Entity_Handle createEntity(Uint64 initial_capacity, Uint32 flags) {
     MX_Point2D* pos = SDL_malloc(sizeof(MX_Point2D));
     SDL_memset(pos, 0, sizeof(MX_Point2D));
     add_component((MX_Entity_Handle)entity, MX_COMPONENT_POSITION, (void*)pos);
+    SDL_Log("Position component created - mask: %u", entity->mask);
   }
   
   if (flags & MX_COMPONENT_SPRITE) {
@@ -22,6 +23,7 @@ MX_Entity_Handle createEntity(Uint64 initial_capacity, Uint32 flags) {
     MX_Sprite* sprite = SDL_malloc(sizeof(MX_Sprite));
     SDL_memset(sprite, 0, sizeof(MX_Sprite));
     add_component((MX_Entity_Handle)entity, MX_COMPONENT_SPRITE, (void*)sprite);
+    SDL_Log("Sprite component created - mask: %u", entity->mask);
   }
   
   if (flags & MX_COMPONENT_PHYSICS2D) {
@@ -29,6 +31,7 @@ MX_Entity_Handle createEntity(Uint64 initial_capacity, Uint32 flags) {
     MX_PhysicsBody2D* bod = SDL_malloc(sizeof(MX_PhysicsBody2D));
     SDL_memset(bod, 0, sizeof(MX_PhysicsBody2D));
     add_component((MX_Entity_Handle)entity, MX_COMPONENT_PHYSICS2D, (void*)bod);
+    SDL_Log("Physics2D component created - mask: %u", entity->mask);
   }
   
   entity->mask = flags;
@@ -68,8 +71,10 @@ void add_component(MX_Entity_Handle entity_handle, uint32_t type, void* componen
   ensure_capacity(entity_handle, entity->count + 1);
   
   // Store the mapping from type to index
+  SDL_Log("Adding component type: %u, Current mask: %u", type, entity->mask);
   entity->comp_to_index[type] = entity->count;
   entity->mask |= (1 << type);
+  SDL_Log("New mask after adding component: %u", entity->mask);
   
   // Add the component
   entity->components[entity->count++] = component;
