@@ -139,8 +139,8 @@ void set_sprite(MX_Entity_Handle entity_handle) {
 
 void set_physics2d(MX_Entity_Handle entity_handle, float x, float y, float width, float height) {
   MX_PhysicsBody2D *pb2d = get_physics2d(entity_handle);
-  pb2d->bod.x = x;
-  pb2d->bod.y = y;
-  pb2d->bod.width = width;
-  pb2d->bod.height = height;
+  pb2d->body.x = x;
+  pb2d->body.y = y;
+  pb2d->body.width = width;
+  pb2d->body.height = height;
 }
