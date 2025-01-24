@@ -36,7 +36,7 @@ MX_Entity_Handle createEntity(Uint64 initial_capacity, Uint32 flags) {
   return (MX_Entity_Handle)entity;
 }
 
-void init_entity(MX_Entity_Handle entity_handle, char* name) {
+void init_entity(MX_Entity_Handle entity_handle, char* name, Uint32 name_length) {
   MX_Entity* entity = (MX_Entity*)entity_handle;
   SDL_strlcpy(entity->name, name, 32);
   SDL_Log("Entity name: %s", entity->name);
