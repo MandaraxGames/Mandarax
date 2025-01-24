@@ -74,8 +74,8 @@ uint8_t get_component_index(uint32_t component_flag) {
     case MX_COMPONENT_PHYSICS3D: return 3;
     case MX_COMPONENT_ANIMATION: return 4;
     default: 
-      SDL_Log("Invalid component flag: %u", component_flag);
-      return 0xFF; // Invalid index
+        SDL_Log("Invalid component flag: %u", component_flag);
+        return 0xFF; // Invalid index
   }
 }
 
@@ -98,35 +98,35 @@ void add_component(MX_Entity_Handle entity_handle, uint32_t type, void* componen
 }
 
 void* get_component(MX_Entity_Handle entity_handle, uint32_t type) {
-  MX_Entity* entity = (MX_Entity*)entity_handle;
-  SDL_Log("Getting component type: %u", type);
-  SDL_Log("Current entity mask: %u", entity->mask);
-  
-  if (!(entity->mask & type)) {
-    SDL_Log("Component not found in mask");
-    return NULL;
-  }
-  
-  uint8_t index = get_component_index(type);
-  SDL_Log("Component index: %u", index);
-  
-  if (index == 0xFF) {
-    SDL_Log("Invalid component index");
-    return NULL;
-  }
-  
-  void* component = entity->components[entity->comp_to_index[index]];
-  SDL_Log("Retrieved component at index: %u", entity->comp_to_index[index]);
-  
-  return component;
+    MX_Entity* entity = (MX_Entity*)entity_handle;
+    SDL_Log("Getting component type: %u", type);
+    SDL_Log("Current entity mask: %u", entity->mask);
+    
+    if (!(entity->mask & type)) {
+        SDL_Log("Component not found in mask");
+        return NULL;
+    }
+    
+    uint8_t index = get_component_index(type);
+    SDL_Log("Component index: %u", index);
+    
+    if (index == 0xFF) {
+        SDL_Log("Invalid component index");
+        return NULL;
+    }
+    
+    void* component = entity->components[entity->comp_to_index[index]];
+    SDL_Log("Retrieved component at index: %u", entity->comp_to_index[index]);
+    
+    return component;
 }
 
 void remove_component(MX_Entity_Handle entity_handle, uint32_t type) {
   MX_Entity* entity = (MX_Entity*)entity_handle;
   if (!(entity->mask & (1 << type))) return;
   
-  uint8_t type_index = get_component_index(type);
-  if (type_index == 0xFF) return;
+  uint8_t index = get_component_index(type);
+  if (index == 0xFF) return;
   
   // If not the last component, move last one to this spot
   if (index < entity->count - 1) {
