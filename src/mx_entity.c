@@ -38,8 +38,8 @@ MX_Entity_Handle createEntity(Uint64 initial_capacity, Uint32 flags) {
 
 void init_entity(MX_Entity_Handle entity_handle, char* name) {
   MX_Entity* entity = (MX_Entity*)entity_handle;
-  SDL_strlcpy(entity.name, name, 32);
-  SDL_Log("Entity name: %s", entity.name);
+  SDL_strlcpy(entity->name, name, 32);
+  SDL_Log("Entity name: %s", entity->name);
 }
 
 void setEntityUpdate(MX_Entity_Handle entity_handle, void (*update)(MX_Entity_Handle, float)) {
@@ -128,19 +128,19 @@ MX_PhysicsBody2D* get_physics2d(MX_Entity_Handle entity_handle) {
 }
 
 void set_position(MX_Entity_Handle entity_handle, Uint64 x, Uint64 y) {
-  MX_Point2D *pos = (MX_Point2D*)get_position(MX_Entity_Handle entity_handle);
-  pos.x = x;
-  pos.y = y;
+  MX_Point2D *pos = get_position(MX_Entity_Handle entity_handle);
+  pos->x = x;
+  pos->y = y;
 }
 
 void set_sprite(MX_Entity_Handle entity_handle) {
-  MX_Sprite *sprite = (MX_Sprite*)get_component(entity_handle, MX_COMPONENT_SPRITE);
+  MX_Sprite *sprite = get_sprite(entity_handle);
 }
 
 void set_physics2d(MX_Entity_Handle entity_handle, float x, float y, float width, float height) {
-  MX_PhysicsBody2D *bod = (MX_PhysicsBody2D*)get_physics2d(MX_Entity_Handle entity_handle);
-  bod.x = x;
-  bod.y = y;
-  bod.width = width;
-  bod.height = height;
+  MX_PhysicsBody2D *bod = get_physics2d(entity_handle);
+  bod->x = x;
+  bod->y = y;
+  bod->width = width;
+  bod->height = height;
 }
