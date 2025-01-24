@@ -128,7 +128,7 @@ MX_PhysicsBody2D* get_physics2d(MX_Entity_Handle entity_handle) {
 }
 
 void set_position(MX_Entity_Handle entity_handle, Uint64 x, Uint64 y) {
-  MX_Point2D *pos = get_position(MX_Entity_Handle entity_handle);
+  MX_Point2D *pos = get_position(entity_handle);
   pos->x = x;
   pos->y = y;
 }
@@ -138,9 +138,9 @@ void set_sprite(MX_Entity_Handle entity_handle) {
 }
 
 void set_physics2d(MX_Entity_Handle entity_handle, float x, float y, float width, float height) {
-  MX_PhysicsBody2D *bod = get_physics2d(entity_handle);
-  bod->x = x;
-  bod->y = y;
-  bod->width = width;
-  bod->height = height;
+  MX_PhysicsBody2D *pb2d = get_physics2d(entity_handle);
+  pb2d->bod.x = x;
+  pb2d->bod.y = y;
+  pb2d->bod.width = width;
+  pb2d->bod.height = height;
 }
