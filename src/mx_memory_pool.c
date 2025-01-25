@@ -1,4 +1,5 @@
-#include "mx_memory_pool.h"
+#include "../include/mx_memory_pool.h"
+#include "mx_memory_pool_internal.h"
 #include "mx_general_internal.h"
 
 void* create_pool(void) {

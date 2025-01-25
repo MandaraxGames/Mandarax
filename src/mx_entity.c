@@ -1,4 +1,5 @@
-#include "mx_entity.h"
+#include "../include/mx_entity.h"
+#include "mx_entity_internal.h"
 #include "mx_general_internal.h"
 
 MX_Entity_Handle createEntity(Uint64 initial_capacity, Uint32 flags) {

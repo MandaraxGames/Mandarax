@@ -46,12 +46,12 @@ typedef struct MX_Hull* MX_Hull_Handle;
 
 // Flag Enums
 typedef enum {
-  MX_HULL_REQUIRED     = 0x0001,  // Window + Motor + Renderer (minimum)
-  MX_HULL_RENDERER     = 0x0002,  // Additional renderers
-  MX_HULL_MANIFEST     = 0x0008,  // Entity systems
-  MX_HULL_CONTROLS     = 0x0010,  // Input handling
-  MX_HULL_NAVIGATION   = 0x0020,  // Scene management
-  MX_HULL_UI           = 0x0040,  // User interface
+  MX_HULL_REQUIRED     = 0x0000,  // Window + Motor + Renderer (minimum)
+  MX_HULL_RENDERER     = 0x0001,  // Additional renderers
+  MX_HULL_MANIFEST     = 0x0002,  // Entity systems
+  MX_HULL_CONTROLS     = 0x0004,  // Input handling
+  MX_HULL_NAVIGATION   = 0x0008,  // Scene management
+  MX_HULL_UI           = 0x0010   // User interface
 } MX_Hull_Flags;
 
 typedef enum {
@@ -60,14 +60,14 @@ typedef enum {
   MX_COMPONENT_SPRITE    = 0x0002,
   MX_COMPONENT_PHYSICS2D = 0x0004,
   MX_COMPONENT_PHYSICS3D = 0x0008,
-  MX_COMPONENT_ANIMATION = 0x0016
+  MX_COMPONENT_ANIMATION = 0x0010
 } MX_EntityComponent_Flags;
 
 typedef struct {
     const char* title;
     Uint32 width;
     Uint32 height;
-    Uint32 flags;          // Configuration flags
+    Uint32 flags;
 } MX_Config;
 
 typedef struct {

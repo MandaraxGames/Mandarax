@@ -1,4 +1,5 @@
-#include "mx_scene.h"
+#include "../include/mx_scene.h"
+#include "mx_scene_internal.h"
 #include "mx_general_internal.h"
 
 void create_scene_manager(void) {

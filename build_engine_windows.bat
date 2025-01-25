@@ -9,7 +9,7 @@ if not exist lib mkdir lib
 
 rem Compile engine source files
 echo Building Mandarax engine...
-cl /c /GS- /I"%SDL_DIR%" /I"src" src/mx_*.c /Folib/
+cl /c /GS- /I"%SDL_DIR%" /I"src" /I"include" src/mx_*.c /Folib/
 
 rem Create static library
 lib /OUT:lib/mandarax.lib lib/*.obj
