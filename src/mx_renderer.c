@@ -2,7 +2,7 @@
 #include "mx_renderer_internal.h"
 #include "mx_general_internal.h"
 
-MX_Renderer* create_renderer(SDL_Renderer *sdl_renderer) {
+MX_Renderer_Handle create_renderer(SDL_Renderer *sdl_renderer) {
   MX_Renderer *renderer = (MX_Renderer*)SDL_malloc(sizeof(MX_Renderer));
   SDL_memset(renderer, 0, sizeof(MX_Renderer));
   renderer->renderer = sdl_renderer;
@@ -17,10 +17,12 @@ MX_Renderer* create_renderer(SDL_Renderer *sdl_renderer) {
   SDL_memset(renderer->render_modifications, 0, 
       sizeof(MX_RenderFunction) * renderer->max_modifications);
   
-  return renderer;
+  return (MX_Renderer_Handle)renderer;
 }
 
-void destroy_renderer(MX_Renderer* renderer) {
+void destroy_renderer(MX_Renderer_Handle renderer_handle) {
+  MX_Renderer *renderer = (MX_Renderer*)renderer_handle;
+
   if (renderer) {
     if (renderer->renderer) {
       SDL_DestroyRenderer(renderer->renderer);

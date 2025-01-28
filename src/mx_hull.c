@@ -13,7 +13,6 @@
 int _fltused = 0;
 
 MX_Hull_Handle assemble_app(const char* title, Uint64 width, Uint64 height, MX_RenderFunction game_render) {
-    
   //TTF_Init();
   //Sint64 img_flags = IMG_INIT_PNG;
   //Sint64 img_initted = IMG_Init(img_flags);
@@ -22,10 +21,10 @@ MX_Hull_Handle assemble_app(const char* title, Uint64 width, Uint64 height, MX_R
   //  return NULL;
   //}
   //SDL_Log("SDL_image initialized successfully");
-    
+  
   MX_Hull* hull = (MX_Hull*)SDL_malloc(sizeof(MX_Hull));
   if (!hull) {
-      return NULL;
+    return NULL;
   }
   SDL_memset(hull, 0, sizeof(MX_Hull));
   
@@ -36,8 +35,8 @@ MX_Hull_Handle assemble_app(const char* title, Uint64 width, Uint64 height, MX_R
                                   height,
                                   SDL_WINDOW_SHOWN);
   // hull->controls = create_controls();
-  hull->renderer = (MX_Renderer_Handle)create_renderer(SDL_CreateRenderer(hull->window, -1, SDL_RENDERER_ACCELERATED));
-  hull->motor = (MX_Motor_Handle)create_motor();
+  hull->renderer = create_renderer(SDL_CreateRenderer(hull->window, -1, SDL_RENDERER_ACCELERATED));
+  hull->motor = create_motor();
   //hull->manifests = create_all_enemies();
   //hull->ui = create_ui();
   //hull->navigation = create_scene_manager();
@@ -65,8 +64,8 @@ void disassemble_app(MX_Hull_Handle hull_handle) {
   //TTF_Quit();
   //IMG_Quit();
   //destroy_controls(hull->controls);
-  destroy_renderer((MX_Renderer*)hull->renderer);
-  destroy_motor((MX_Motor*)hull->motor);
+  destroy_renderer(hull->renderer);
+  destroy_motor(hull->motor);
   //if (hull->manifests) {
   //  cleanup_enemies(hull->manifests);
   //}

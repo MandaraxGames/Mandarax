@@ -6,14 +6,15 @@
 #include "mx_renderer_internal.h"
 #include "mx_general_internal.h"
 
-MX_Motor* create_motor() {
+MX_Motor_Handle create_motor() {
   MX_Motor *motor = (MX_Motor*)SDL_malloc(sizeof(MX_Motor));
   SDL_memset(motor, 0, sizeof(MX_Motor)); // sets all values to zero,
   motor->running = SDL_TRUE; // only running needs a default value not equal to zero
-  return motor;
+  return (MX_Motor_Handle)motor;
 }
 
-void destroy_motor(MX_Motor* motor) {
+void destroy_motor(MX_Motor_Handle motor_handle) {
+  MX_Motor *motor = (MX_Motor*)motor_handle;
   SDL_free(motor);
 }
 
