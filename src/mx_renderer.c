@@ -1,4 +1,5 @@
-#include "mx_renderer.h"
+#include "../include/mx_renderer.h"
+#include "mx_renderer_internal.h"
 #include "mx_general_internal.h"
 
 MX_Renderer_Handle create_renderer(SDL_Renderer *sdl_renderer) {

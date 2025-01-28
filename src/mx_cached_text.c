@@ -1,5 +1,7 @@
-#include "mx_cached_text.h"
-#include "mx_stack.h"
+#include "../include/mx_cached_text.h"
+#include "mx_cached_text_internal.h"
+#include "../include/mx_stack.h"
+#include "mx_stack_internal.h"
 #include "mx_general_internal.h"
 
 void* create_cached_text(const char* text, Uint64 max_length) {
@@ -22,7 +24,7 @@ void* create_cached_text(const char* text, Uint64 max_length) {
         push_stack((MX_Stack_Handle)cached->text_stack, (void*)c);
     }
     
-    return cached;
+    return (void*)cached;
 }
 
 void destroy_cached_text(void* cached_text_pointer) {

@@ -1,14 +1,18 @@
-#include "mx_hull.h"
-#include "mx_controls.h"
-#include "mx_renderer.h"
-#include "mx_motor.h"
-#include "mx_scene.h"
+#include "../include/mx_hull.h"
+#include "mx_hull_internal.h"
+#include "../include/mx_motor.h"
+#include "mx_motor_internal.h"
+#include "../include/mx_controls.h"
+#include "mx_controls_internal.h"
+#include "../include/mx_renderer.h"
+#include "mx_renderer_internal.h"
+#include "../include/mx_scene.h"
+#include "mx_scene_internal.h"
 #include "mx_general_internal.h"
 
 int _fltused = 0;
 
 MX_Hull_Handle assemble_app(const char* title, Uint64 width, Uint64 height, MX_RenderFunction game_render) {
-    
   //TTF_Init();
   //Sint64 img_flags = IMG_INIT_PNG;
   //Sint64 img_initted = IMG_Init(img_flags);
@@ -17,10 +21,10 @@ MX_Hull_Handle assemble_app(const char* title, Uint64 width, Uint64 height, MX_R
   //  return NULL;
   //}
   //SDL_Log("SDL_image initialized successfully");
-    
+  
   MX_Hull* hull = (MX_Hull*)SDL_malloc(sizeof(MX_Hull));
   if (!hull) {
-      return NULL;
+    return NULL;
   }
   SDL_memset(hull, 0, sizeof(MX_Hull));
   
@@ -36,7 +40,6 @@ MX_Hull_Handle assemble_app(const char* title, Uint64 width, Uint64 height, MX_R
   //hull->manifests = create_all_enemies();
   //hull->ui = create_ui();
   //hull->navigation = create_scene_manager();
-  
   
   //transition_to_scene((void*)hull, SCENE_SPLASH);
   
