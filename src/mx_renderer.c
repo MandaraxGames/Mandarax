@@ -1,4 +1,4 @@
-#include "../include/mx_renderer.h"
+#include "mx_renderer.h"
 #include "mx_renderer_internal.h"
 #include "mx_general_internal.h"
 

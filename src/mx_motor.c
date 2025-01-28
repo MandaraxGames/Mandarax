@@ -1,8 +1,8 @@
-#include "../include/mx_motor.h"
+#include "mx_motor.h"
 #include "mx_motor_internal.h"
-#include "../include/mx_controls.h"
+#include "mx_controls.h"
 #include "mx_controls_internal.h"
-#include "../include/mx_renderer.h"
+#include "mx_renderer.h"
 #include "mx_renderer_internal.h"
 #include "mx_general_internal.h"
 

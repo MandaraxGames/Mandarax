@@ -1,4 +1,4 @@
-#include "../include/mx_stack.h"
+#include "mx_stack.h"
 #include "mx_stack_internal.h"
 #include "mx_general_internal.h"
 

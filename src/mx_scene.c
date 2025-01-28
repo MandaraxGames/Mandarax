@@ -1,4 +1,4 @@
-#include "../include/mx_scene.h"
+#include "mx_scene.h"
 #include "mx_scene_internal.h"
 #include "mx_general_internal.h"
 
