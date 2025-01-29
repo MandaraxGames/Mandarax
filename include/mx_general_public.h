@@ -45,16 +45,18 @@ typedef struct MX_SceneManager* MX_SceneManager_Handle;
 typedef struct MX_Hull* MX_Hull_Handle;
 
 // Flag Enums
-typedef enum {
-  MX_HULL_REQUIRED     = 0x0000,  // Window + Motor + Renderer (minimum)
-  MX_HULL_RENDERER     = 0x0001,  // Additional renderers
-  MX_HULL_MANIFEST     = 0x0002,  // Entity systems
-  MX_HULL_CONTROLS     = 0x0004,  // Input handling
-  MX_HULL_NAVIGATION   = 0x0008,  // Scene management
-  MX_HULL_UI           = 0x0010   // User interface
+typedef enum MX_Hull_Flags {
+  MX_HULL_REQUIRED       = 0x0000,  // Window + Motor + Basic Renderer (minimum)
+  MX_HULL_IMAGE_RENDERER = 0x0001,  // Allows rendering PNG and soon JPEG
+  MX_HULL_FONT_RENDERER  = 0x0002,  // Allows rendering fonts
+  MX_HULL_FULL_RENDERER  = 0x0004,  // Allows all rendering
+  MX_HULL_MANIFEST       = 0x0008,  // Entity systems
+  MX_HULL_CONTROLS       = 0x0010,  // Input handling
+  MX_HULL_NAVIGATION     = 0x0020,  // Scene management
+  MX_HULL_UI             = 0x0040   // User interface
 } MX_Hull_Flags;
 
-typedef enum {
+typedef enum MX_EntityComponent_Flags {
   MX_COMPONENT_NONE      = 0x0000,
   MX_COMPONENT_POSITION  = 0x0001,
   MX_COMPONENT_SPRITE    = 0x0002,

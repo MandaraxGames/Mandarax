@@ -12,15 +12,20 @@
 
 int _fltused = 0;
 
-MX_Hull_Handle assemble_app(const char* title, Uint64 width, Uint64 height, MX_RenderFunction game_render) {
-  //TTF_Init();
-  //Sint64 img_flags = IMG_INIT_PNG;
-  //Sint64 img_initted = IMG_Init(img_flags);
-  //if((img_initted & img_flags) != img_flags) {
-  //  SDL_Log("SDL_image init failed: %s\n", IMG_GetError());
-  //  return NULL;
-  //}
-  //SDL_Log("SDL_image initialized successfully");
+MX_Hull_Handle assemble_app(const char* title, Uint64 width, Uint64 height, MX_Hull_Flags flags) {
+  if (flags &  MX_HULL_FONT_RENDERER) {
+    TTF_Init();
+  }
+  
+  if (flags &  MX_HULL_IMAGE_RENDERER) {
+    Sint64 img_flags = IMG_INIT_PNG;
+    Sint64 img_initted = IMG_Init(img_flags);
+    if((img_initted & img_flags) != img_flags) {
+      SDL_Log("SDL_image init failed: %s\n", IMG_GetError());
+      return NULL;
+    }
+    SDL_Log("SDL_image initialized successfully");
+  }
   
   MX_Hull* hull = (MX_Hull*)SDL_malloc(sizeof(MX_Hull));
   if (!hull) {
@@ -28,15 +33,16 @@ MX_Hull_Handle assemble_app(const char* title, Uint64 width, Uint64 height, MX_R
   }
   SDL_memset(hull, 0, sizeof(MX_Hull));
   
+  hull->flags = flags;
   hull->window = SDL_CreateWindow(title,
                                   SDL_WINDOWPOS_CENTERED,
                                   SDL_WINDOWPOS_CENTERED,
                                   width,
                                   height,
                                   SDL_WINDOW_SHOWN);
-  // hull->controls = create_controls();
   hull->renderer = create_renderer(SDL_CreateRenderer(hull->window, -1, SDL_RENDERER_ACCELERATED));
   hull->motor = create_motor();
+  //hull->controls = create_controls();
   //hull->manifests = create_all_enemies();
   //hull->ui = create_ui();
   //hull->navigation = create_scene_manager();
@@ -48,7 +54,6 @@ MX_Hull_Handle assemble_app(const char* title, Uint64 width, Uint64 height, MX_R
   add_render_modification((MX_Hull_Handle)hull, render_grid);  
   //add_render_modification(hull, render_all_enemies);
   //add_render_modification(hull, render_ui);
-  add_render_modification((MX_Hull_Handle)hull, game_render);  // Game rendering
   
   char base_path[256];
   SDL_GetBasePath();

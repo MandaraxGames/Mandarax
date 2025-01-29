@@ -117,6 +117,7 @@ typedef struct {
 } MX_SceneManager;
 
 typedef struct {
+  MX_Hull_Flags flags;
   // Required components
   SDL_Window* window;
   MX_Motor_Handle motor;

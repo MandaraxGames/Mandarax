@@ -3,7 +3,7 @@
 
 #include "mx_general_public.h"
 
-MX_Hull_Handle assemble_app(const char* title, Uint64 width, Uint64 height, MX_RenderFunction game_render);
+MX_Hull_Handle assemble_app(const char* title, Uint64 width, Uint64 height, MX_Hull_Flags flags);
 void disassemble_app(MX_Hull_Handle hull_handle);
 void render_grid(SDL_Renderer* renderer);
 
