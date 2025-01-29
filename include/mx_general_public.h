@@ -1,7 +1,6 @@
 #ifndef MX_GENERAL_PUBLIC_H
 #define MX_GENERAL_PUBLIC_H
 
-//#include <stddef.h>
 #include <SDL.h>
 #include <SDL_stdinc.h>
 #include <SDL_timer.h>
