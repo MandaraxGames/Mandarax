@@ -2,8 +2,6 @@
 #define MX_GENERAL_PUBLIC_H
 
 #include <SDL.h>
-#include <SDL_stdinc.h>
-#include <SDL_timer.h>
 #include <SDL_image.h>
 //#include <SDL_ttf.h>
 
@@ -90,8 +88,10 @@ typedef struct {
 typedef struct {
   MX_Rect src_rect;
   MX_Rect dest_rect;
+  MX_Point2D center;
   Uint64 scale_x, scale_y;
-  float rotation;
+  double angle;
+  SDL_RendererFlip flip;  // Flip flags
   SDL_Texture* texture;
   void (*render)(MX_Sprite_Handle, struct SDL_Renderer*);
 } MX_Sprite;
