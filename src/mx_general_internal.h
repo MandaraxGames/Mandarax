@@ -82,7 +82,7 @@ typedef struct {
 typedef struct {
   Uint64 mod_count;
   Uint64 max_modifications;
-  SDL_Renderer* renderer;
+  SDL_Renderer* context;
   MX_RenderFunction* render_modifications;
 } MX_Renderer;
 
@@ -90,7 +90,7 @@ typedef struct {
   Uint64 entity_count;
   Uint64 max_entities;  // User-defined max
   void (*update)(void* manifest);
-  void (*render)(void* manifest, SDL_Renderer* renderer);
+  void (*render)(void* manifest, SDL_Renderer* context);
   void** entities;      // Dynamic array of entities
 } MX_Manifest;
 

@@ -2,10 +2,10 @@
 #include "mx_renderer_internal.h"
 #include "mx_general_internal.h"
 
-MX_Renderer_Handle create_renderer(SDL_Renderer *sdl_renderer) {
+MX_Renderer_Handle create_renderer(SDL_Renderer *context) {
   MX_Renderer *renderer = (MX_Renderer*)SDL_malloc(sizeof(MX_Renderer));
   SDL_memset(renderer, 0, sizeof(MX_Renderer));
-  renderer->renderer = sdl_renderer;
+  renderer->context = context;
   renderer->max_modifications = 10;
 
   renderer->render_modifications = (MX_RenderFunction*)SDL_malloc(sizeof(MX_RenderFunction)*10);
@@ -24,8 +24,8 @@ void destroy_renderer(MX_Renderer_Handle renderer_handle) {
   MX_Renderer *renderer = (MX_Renderer*)renderer_handle;
 
   if (renderer) {
-    if (renderer->renderer) {
-      SDL_DestroyRenderer(renderer->renderer);
+    if (renderer->context) {
+      SDL_DestroyRenderer(renderer->context);
     }
     SDL_free(renderer);
   }
@@ -34,15 +34,15 @@ void destroy_renderer(MX_Renderer_Handle renderer_handle) {
 void perform_rendering(MX_Hull_Handle hull_handle) {
   MX_Renderer *renderer = (MX_Renderer*)((MX_Hull*)hull_handle)->renderer;
 
-  if (renderer && renderer->renderer) {
-    SDL_SetRenderDrawColor(renderer->renderer, 0, 0, 0, 255);
-    SDL_RenderClear(renderer->renderer);
+  if (renderer && renderer->context) {
+    SDL_SetRenderDrawColor(renderer->context, 0, 0, 0, 255);
+    SDL_RenderClear(renderer->context);
 
     for (int i = 0; i < renderer->mod_count; i++) {
-      renderer->render_modifications[i](renderer->renderer);
+      renderer->render_modifications[i](renderer->context);
     }
 
-    SDL_RenderPresent(renderer->renderer);
+    SDL_RenderPresent(renderer->context);
   }
 }
 

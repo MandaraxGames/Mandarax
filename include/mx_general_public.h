@@ -99,19 +99,24 @@ typedef struct {
   MX_Point2D center;
   Uint64 scale_x, scale_y;
   double angle;
-  SDL_RendererFlip flip;  // Flip flags
+  SDL_RendererFlip flip;
   SDL_Texture* texture;
   void (*render)(MX_Sprite_Handle, struct SDL_Renderer*);
 } MX_Sprite;
 
+// Change to use a single texture (the whole sprite sheet)
+// Using SDL_Rect to define different source rectangles for each frame
+// Updating the source rectangle during animation
+// instead of switching textures
+
 typedef struct {
-    SDL_Texture** frames;      // Array of frame textures
-    int frame_count;           // Total number of frames
-    int current_frame;         // Which frame we're on
-    float frame_duration;      // How long each frame lasts
-    float time_accumulated;    // Time tracker for animation
-    bool is_playing;           // Animation state
-    bool loops;               // Should it loop or stop at end
+  SDL_Texture** frames;
+  int frame_count;
+  int current_frame;
+  float frame_duration;
+  float time_accumulated;
+  bool is_playing;
+  bool loops;
 } MX_Animation;
 
 #endif // MX_GENERAL_PUBLIC_H

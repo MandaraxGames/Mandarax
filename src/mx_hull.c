@@ -79,15 +79,15 @@ void disassemble_app(MX_Hull_Handle hull_handle) {
   SDL_free(hull);
 }
 
-void render_grid(SDL_Renderer* renderer) {
-  if (!renderer) return;
+void render_grid(SDL_Renderer* context) {
+  if (!context) return;
   int cell_size = 64;
-  SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+  SDL_SetRenderDrawColor(context, 255, 255, 255, 255);
 
   for (int i = 0; i < SCREEN_WIDTH / cell_size; i++) {
-    SDL_RenderDrawLine(renderer, i * cell_size, 0, i * cell_size, SCREEN_HEIGHT);
+    SDL_RenderDrawLine(context, i * cell_size, 0, i * cell_size, SCREEN_HEIGHT);
     for (int j = 0; j < SCREEN_HEIGHT / cell_size; j++) {
-      SDL_RenderDrawLine(renderer, 0, j * cell_size, SCREEN_WIDTH, j * cell_size);
+      SDL_RenderDrawLine(context, 0, j * cell_size, SCREEN_WIDTH, j * cell_size);
     }
   }
 }

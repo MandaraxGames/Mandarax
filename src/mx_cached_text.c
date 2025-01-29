@@ -40,7 +40,7 @@ void destroy_cached_text(void* cached_text_pointer) {
     }
 }
 
-void update_cached_text_texture(void* cached_text_pointer, SDL_Renderer* renderer) {
+void update_cached_text_texture(void* cached_text_pointer, SDL_Renderer* context) {
     MX_CachedText* text = (MX_CachedText*)cached_text_pointer;
     MX_Stack* text_stack = (MX_Stack*)(text->text_stack);
     
@@ -73,7 +73,7 @@ void update_cached_text_texture(void* cached_text_pointer, SDL_Renderer* rendere
     
     //text->width = surface->w;
     //text->height = surface->h;
-    //text->texture = SDL_CreateTextureFromSurface(renderer, surface);
+    //text->texture = SDL_CreateTextureFromSurface(context, surface);
     //SDL_FreeSurface(surface);
     
     if (!text->texture) {
@@ -95,10 +95,10 @@ void get_cached_text_dimensions(void* cached_text_pointer, Uint64* width, Uint64
     }
 }
 
-void render_cached_text(void* cached_text_pointer, SDL_Renderer* renderer, SDL_Rect* dstrect) {
+void render_cached_text(void* cached_text_pointer, SDL_Renderer* context, SDL_Rect* dstrect) {
     MX_CachedText* text = (MX_CachedText*)cached_text_pointer;
     if (text && text->texture) {
-        SDL_RenderCopy(renderer, text->texture, NULL, dstrect);
+        SDL_RenderCopy(context, text->texture, NULL, dstrect);
     }
 }
 

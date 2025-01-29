@@ -1,6 +1,6 @@
 #include "mx_general_internal.h"
 
-SDL_Texture* load_texture(SDL_Renderer* renderer, const char* path) {
+SDL_Texture* load_texture(SDL_Renderer* context, const char* path) {
   SDL_Texture* texture = NULL;
   
   // Load the image into a surface
@@ -11,7 +11,7 @@ SDL_Texture* load_texture(SDL_Renderer* renderer, const char* path) {
   }
   
   // Create texture from surface
-  texture = SDL_CreateTextureFromSurface(renderer, loaded_surface);
+  texture = SDL_CreateTextureFromSurface(context, loaded_surface);
   if (!texture) {
     SDL_Log("Unable to create texture from %s! SDL Error: %s\n", path, SDL_GetError());
   }
@@ -22,7 +22,7 @@ SDL_Texture* load_texture(SDL_Renderer* renderer, const char* path) {
   return texture;
 }
 
-void set_sprite(MX_Entity_Handle entity_handle, SDL_Renderer* renderer, const char* path) {
+void set_sprite(MX_Entity_Handle entity_handle, SDL_Renderer* context, const char* path) {
   MX_Sprite* sprite = get_sprite(entity_handle);
   if (!sprite) return;
   
@@ -31,7 +31,7 @@ void set_sprite(MX_Entity_Handle entity_handle, SDL_Renderer* renderer, const ch
     SDL_DestroyTexture(sprite->texture);
   }
   
-  sprite->texture = load_texture(renderer, path);
+  sprite->texture = load_texture(context, path);
   if (sprite->texture) {
     // Get the texture dimensions
     SDL_QueryTexture(sprite->texture, NULL, NULL, &sprite->width, &sprite->height);
