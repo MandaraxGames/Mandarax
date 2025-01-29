@@ -14,7 +14,7 @@ int _fltused = 0;
 
 MX_Hull_Handle assemble_app(const char* title, Uint64 width, Uint64 height, MX_Hull_Flags flags) {
   if (flags &  MX_HULL_FONT_RENDERER) {
-    TTF_Init();
+    //TTF_Init();
   }
   
   if (flags &  MX_HULL_IMAGE_RENDERER) {
