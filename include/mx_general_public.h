@@ -86,6 +86,14 @@ typedef struct {
 } MX_FRect;
 
 typedef struct {
+  MX_FRect body;
+  float scale_x, scale_y;
+  float rotation;
+  float velocity;
+  float acceleration;
+} MX_PhysicsBody2D;
+
+typedef struct {
   MX_Rect src_rect;
   MX_Rect dest_rect;
   MX_Point2D center;
@@ -97,11 +105,13 @@ typedef struct {
 } MX_Sprite;
 
 typedef struct {
-  MX_FRect body;
-  float scale_x, scale_y;
-  float rotation;
-  float velocity;
-  float acceleration;
-} MX_PhysicsBody2D;
+    SDL_Texture** frames;      // Array of frame textures
+    int frame_count;           // Total number of frames
+    int current_frame;         // Which frame we're on
+    float frame_duration;      // How long each frame lasts
+    float time_accumulated;    // Time tracker for animation
+    bool is_playing;           // Animation state
+    bool loops;               // Should it loop or stop at end
+} MX_Animation;
 
 #endif // MX_GENERAL_PUBLIC_H
