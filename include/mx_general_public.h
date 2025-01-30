@@ -82,15 +82,15 @@ typedef struct {
 } MX_Rect;
 
 typedef struct {
-  float x, y, width, height;
+  double x, y, width, height;
 } MX_FRect;
 
 typedef struct {
   MX_FRect body;
-  float scale_x, scale_y;
-  float rotation;
-  float velocity;
-  float acceleration;
+  double scale_x, scale_y;
+  double rotation;
+  double velocity;
+  double acceleration;
 } MX_PhysicsBody2D;
 
 typedef struct {
