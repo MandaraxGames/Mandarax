@@ -1,11 +1,7 @@
 #ifndef MX_GENERAL_INTERNAL_H
 #define MX_GENERAL_INTERNAL_H
 
-#include <SDL.h>
-#include <SDL_stdinc.h>
-//#include <SDL_timer.h>
-//#include <SDL_ttf.h>
-//#include <SDL_image.h>
+#include "mx_general_public.h"
 
 // State Enums
 typedef enum {
