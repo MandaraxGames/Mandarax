@@ -115,8 +115,8 @@ typedef struct {
   int current_frame;
   float frame_duration;
   float time_accumulated;
-  bool is_playing;
-  bool loops;
+  SDL_bool is_playing;
+  SDL_bool loops;
 } MX_Animation;
 
 #endif // MX_GENERAL_PUBLIC_H
