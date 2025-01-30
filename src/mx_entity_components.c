@@ -21,10 +21,6 @@ void set_position(MX_Entity_Handle entity_handle, Uint64 x, Uint64 y) {
   pos->y = y;
 }
 
-void set_sprite(MX_Entity_Handle entity_handle) {
-  MX_Sprite *sprite = get_sprite(entity_handle);
-}
-
 void set_physics2d(MX_Entity_Handle entity_handle, float x, float y, float width, float height) {
   MX_PhysicsBody2D *pb2d = get_physics2d(entity_handle);
   pb2d->body.x = x;
