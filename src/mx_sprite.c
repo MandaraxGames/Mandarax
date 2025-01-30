@@ -29,8 +29,8 @@ MX_Sprite* get_sprite(MX_Entity_Handle entity_handle) {
   return (MX_Sprite*)get_component(entity_handle, MX_COMPONENT_SPRITE);
 }
 
-void set_sprite(MX_Entity_Handle entity_handle, MX_Renderer_Handle, const char* path) {
-  SDL_Renderer* context = ((MX_Renderer*)MX_Renderer_Handle)->context;
+void set_sprite(MX_Entity_Handle entity_handle, MX_Renderer_Handle renderer_handle, const char* path) {
+  SDL_Renderer* context = ((MX_Renderer*)renderer_handle)->context;
   MX_Sprite* sprite = get_sprite(entity_handle);
   if (!sprite) return;
   
