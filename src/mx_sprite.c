@@ -1,3 +1,6 @@
+#include "mx_entity.h"
+#include "mx_entity_internal.h"
+#include "mx_entity_components.h"
 #include "mx_general_internal.h"
 
 SDL_Texture* load_texture(SDL_Renderer* context, const char* path) {
@@ -34,10 +37,13 @@ void set_sprite(MX_Entity_Handle entity_handle, SDL_Renderer* context, const cha
   sprite->texture = load_texture(context, path);
   if (sprite->texture) {
     // Get the texture dimensions
-    SDL_QueryTexture(sprite->texture, NULL, NULL, &sprite->src_rect.width, &sprite->src_rect.height);
+    SDL_QueryTexture(sprite->texture, NULL, NULL, &((int)sprite->src_rect.width), &((int)sprite->src_rect.height));
     
     sprite->angle = 0.0;
-    sprite->center = NULL;  // Center of texture
+    sprite->center = {
+      .x = sprite->src_rect.width/2,
+      .y = sprite->src_rect.height/2
+    };
     sprite->flip = SDL_FLIP_NONE;
   }
 }
