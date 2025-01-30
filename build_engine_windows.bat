@@ -7,6 +7,7 @@ set SDL_LIB_DIR=C:\Program Files\SDL2\SDL2-2.30.7\VisualC\x64\Release
 set SDL_IMAGE_LIB_DIR=C:\Program Files\SDL2_image-2.8.2\lib\x64
 
 rem Create lib directory if it doesn't exist
+if exist lib del /q lib
 if not exist lib mkdir lib
 
 rem Compile engine source files
