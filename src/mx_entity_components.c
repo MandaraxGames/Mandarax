@@ -7,10 +7,6 @@ MX_Point2D* get_position(MX_Entity_Handle entity_handle) {
   return (MX_Point2D*)get_component(entity_handle, MX_COMPONENT_POSITION);
 }
 
-MX_Sprite* get_sprite(MX_Entity_Handle entity_handle) {
-  return (MX_Sprite*)get_component(entity_handle, MX_COMPONENT_SPRITE);
-}
-
 MX_PhysicsBody2D* get_physics2d(MX_Entity_Handle entity_handle) {
   return (MX_PhysicsBody2D*)get_component(entity_handle, MX_COMPONENT_PHYSICS2D);
 }

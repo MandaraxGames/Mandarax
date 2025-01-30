@@ -25,6 +25,10 @@ SDL_Texture* load_texture(SDL_Renderer* context, const char* path) {
   return texture;
 }
 
+MX_Sprite* get_sprite(MX_Entity_Handle entity_handle) {
+  return (MX_Sprite*)get_component(entity_handle, MX_COMPONENT_SPRITE);
+}
+
 void set_sprite(MX_Entity_Handle entity_handle, SDL_Renderer* context, const char* path) {
   MX_Sprite* sprite = get_sprite(entity_handle);
   if (!sprite) return;
