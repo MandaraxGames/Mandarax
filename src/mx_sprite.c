@@ -40,7 +40,7 @@ void set_sprite(MX_Entity_Handle entity_handle, SDL_Renderer* context, const cha
     SDL_QueryTexture(sprite->texture, NULL, NULL, &((int)sprite->src_rect.width), &((int)sprite->src_rect.height));
     
     sprite->angle = 0.0;
-    sprite->center = {
+    sprite->center = (MX_Point2D){
       .x = sprite->src_rect.width/2,
       .y = sprite->src_rect.height/2
     };
