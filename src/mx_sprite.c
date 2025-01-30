@@ -34,13 +34,7 @@ void set_sprite(MX_Entity_Handle entity_handle, SDL_Renderer* context, const cha
   sprite->texture = load_texture(context, path);
   if (sprite->texture) {
     // Get the texture dimensions
-    SDL_QueryTexture(sprite->texture, NULL, NULL, &sprite->width, &sprite->height);
-    
-    // Initialize source rect to full texture
-    sprite->src_rect = (SDL_Rect){0, 0, sprite->width, sprite->height};
-    
-    // Initialize dest rect - you might want to use the entity's position here
-    sprite->dest_rect = (SDL_Rect){0, 0, sprite->width, sprite->height};
+    SDL_QueryTexture(sprite->texture, NULL, NULL, &sprite->src_rect.width, &sprite->src_rect.height);
     
     sprite->angle = 0.0;
     sprite->center = NULL;  // Center of texture
