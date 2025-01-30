@@ -79,6 +79,10 @@ void disassemble_app(MX_Hull_Handle hull_handle) {
   SDL_free(hull);
 }
 
+MX_Renderer_Handle getRendererHandle(MX_Hull_Handle hull_handle) {
+  return ((MX_Hull*)hull_handle)->renderer;
+}
+
 void render_grid(SDL_Renderer* context) {
   if (!context) return;
   int cell_size = 64;

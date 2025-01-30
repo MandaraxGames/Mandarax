@@ -29,7 +29,8 @@ MX_Sprite* get_sprite(MX_Entity_Handle entity_handle) {
   return (MX_Sprite*)get_component(entity_handle, MX_COMPONENT_SPRITE);
 }
 
-void set_sprite(MX_Entity_Handle entity_handle, SDL_Renderer* context, const char* path) {
+void set_sprite(MX_Entity_Handle entity_handle, MX_Renderer_Handle, const char* path) {
+  SDL_Renderer* context = ((MX_Renderer*)MX_Renderer_Handle)->context;
   MX_Sprite* sprite = get_sprite(entity_handle);
   if (!sprite) return;
   
@@ -45,8 +46,8 @@ void set_sprite(MX_Entity_Handle entity_handle, SDL_Renderer* context, const cha
     
     sprite->angle = 0.0;
     sprite->center = (MX_Point2D){
-      .x = sprite->src_rect.width/2,
-      .y = sprite->src_rect.height/2
+      .x = sprite->dest_rect.width/2,
+      .y = sprite->dest_rect.height/2
     };
     sprite->flip = SDL_FLIP_NONE;
   }
