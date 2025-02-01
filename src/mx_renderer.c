@@ -57,6 +57,6 @@ void add_render_modification(MX_Hull_Handle hull_handle, MX_RenderFunction mod) 
   }
 }
 
-MX_Renderer_Handle get_render_handle(MX_Hull_Handle hull_handle) {
+MX_Renderer_Handle get_renderer_handle(MX_Hull_Handle hull_handle) {
   return ((MX_Hull*)hull_handle)->renderer;
 }
