@@ -56,3 +56,7 @@ void add_render_modification(MX_Hull_Handle hull_handle, MX_RenderFunction mod) 
     SDL_Log("Max modifications reached, cannot add more.\n");
   }
 }
+
+MX_Renderer_Handle get_render_handle(MX_Hull_Handle hull_handle) {
+  return ((MX_Hull*)hull_handle)->renderer;
+}
