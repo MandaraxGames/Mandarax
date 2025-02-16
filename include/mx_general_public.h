@@ -110,13 +110,16 @@ typedef struct {
 // instead of switching textures
 
 typedef struct {
-  SDL_Texture** frames;
-  int frame_count;
-  int current_frame;
-  float frame_duration;
-  float time_accumulated;
-  SDL_bool is_playing;
-  SDL_bool loops;
+  SDL_bool is_playing;        // Animation state
+  SDL_bool loops;             // Should animation loop
+  Uint64 rows;                // Number of rows in sprite sheet
+  Uint64 cols;                // Number of columns in sprite sheet
+  Uint64 frame_count;         // Total number of frames
+  Uint64 current_frame;       // Current frame index
+  float frame_duration;       // Time per frame (in ms)
+  float time_accumulated;     // Animation timer
+  SDL_Rect frame_rect;        // Current frame rectangle (160x160)
+  SDL_Texture* sprite_sheet;  // Single texture containing all frames
 } MX_Animation;
 
 #endif // MX_GENERAL_PUBLIC_H
